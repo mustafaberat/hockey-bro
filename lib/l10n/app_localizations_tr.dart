@@ -10,7 +10,7 @@ class AppLocalizationsTr extends AppLocalizations {
   AppLocalizationsTr([String locale = 'tr']) : super(locale);
 
   @override
-  String get appTitle => 'Faceoff';
+  String get appTitle => 'HockeyBro';
 
   @override
   String get tagline => 'Tokmağını sürükle. Diski it.';
@@ -135,13 +135,13 @@ class AppLocalizationsTr extends AppLocalizations {
   String get adSlot => 'Reklam';
 
   @override
-  String get logoTop => 'HOKEY';
+  String get logoTop => 'HOCKEY';
 
   @override
-  String get logoBottom => 'DÜELLOSU';
+  String get logoBottom => 'BRO';
 
   @override
-  String get workingTitle => '(geçici isim)';
+  String get slogan => 'Bir telefon. İki kardeş. Bir kazanan.';
 
   @override
   String get onePlayerHint => 'Bota karşı';

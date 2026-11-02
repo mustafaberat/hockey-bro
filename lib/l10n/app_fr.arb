@@ -1,6 +1,6 @@
 {
   "@@locale": "fr",
-  "appTitle": "Faceoff",
+  "appTitle": "HockeyBro",
   "tagline": "Glisse ton maillet. Pousse le palet.",
   "play": "Jouer",
   "howToPlay": "Comment jouer",
@@ -40,8 +40,8 @@
   "start": "Commencer",
   "adSlot": "Pub",
   "logoTop": "HOCKEY",
-  "logoBottom": "DUEL",
-  "workingTitle": "(titre provisoire)",
+  "logoBottom": "BRO",
+  "slogan": "Un téléphone. Deux frères. Un gagnant.",
   "onePlayerHint": "Contre le bot",
   "twoPlayersHint": "Face à face, un téléphone",
   "goalShout": "BUT !",

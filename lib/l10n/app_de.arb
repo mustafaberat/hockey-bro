@@ -1,6 +1,6 @@
 {
   "@@locale": "de",
-  "appTitle": "Faceoff",
+  "appTitle": "HockeyBro",
   "tagline": "Zieh deinen Schläger. Schieb den Puck.",
   "play": "Spielen",
   "howToPlay": "So geht's",
@@ -40,8 +40,8 @@
   "start": "Start",
   "adSlot": "Anzeige",
   "logoTop": "HOCKEY",
-  "logoBottom": "DUELL",
-  "workingTitle": "(Arbeitstitel)",
+  "logoBottom": "BRO",
+  "slogan": "Ein Handy. Zwei Brüder. Ein Sieger.",
   "onePlayerHint": "Gegen den Bot",
   "twoPlayersHint": "Gegenüber, ein Handy",
   "goalShout": "TOR!",

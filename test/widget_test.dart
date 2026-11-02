@@ -1,12 +1,12 @@
-import 'package:faceoff/app.dart';
-import 'package:faceoff/app_scope.dart';
-import 'package:faceoff/config/app_config.dart';
-import 'package:faceoff/engine/robot.dart';
-import 'package:faceoff/engine/table.dart';
-import 'package:faceoff/services/ad_service.dart';
-import 'package:faceoff/services/audio_service.dart';
-import 'package:faceoff/services/interstitial_policy.dart';
-import 'package:faceoff/services/settings_service.dart';
+import 'package:hockey_bro/app.dart';
+import 'package:hockey_bro/app_scope.dart';
+import 'package:hockey_bro/config/app_config.dart';
+import 'package:hockey_bro/engine/robot.dart';
+import 'package:hockey_bro/engine/table.dart';
+import 'package:hockey_bro/services/ad_service.dart';
+import 'package:hockey_bro/services/audio_service.dart';
+import 'package:hockey_bro/services/interstitial_policy.dart';
+import 'package:hockey_bro/services/settings_service.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -132,7 +132,7 @@ void main() {
     final audio = AudioService();
     await audio.init(enabled: false);
     await tester.pumpWidget(
-      FaceoffApp(
+      HockeyBroApp(
         services: AppServices(
           settings: settings,
           audio: audio,
@@ -141,6 +141,9 @@ void main() {
       ),
     );
     await tester.pump();
+    expect(find.text('HOCKEY'), findsWidgets);
+    expect(find.text('BRO'), findsWidgets);
+    expect(find.text('One Phone. Two Bros. One Winner.'), findsOneWidget);
     expect(find.text('1 Player'), findsOneWidget);
     expect(find.text('2 Players'), findsOneWidget);
     expect(find.text('Settings'), findsOneWidget);

@@ -1,6 +1,6 @@
 {
   "@@locale": "it",
-  "appTitle": "Faceoff",
+  "appTitle": "HockeyBro",
   "tagline": "Trascina la mazza. Spingi il disco.",
   "play": "Gioca",
   "howToPlay": "Come si gioca",
@@ -40,8 +40,8 @@
   "start": "Inizia",
   "adSlot": "Annuncio",
   "logoTop": "HOCKEY",
-  "logoBottom": "DUELLO",
-  "workingTitle": "(titolo provvisorio)",
+  "logoBottom": "BRO",
+  "slogan": "Un telefono. Due fratelli. Un vincitore.",
   "onePlayerHint": "Contro il bot",
   "twoPlayersHint": "Faccia a faccia, un telefono",
   "goalShout": "GOL!",

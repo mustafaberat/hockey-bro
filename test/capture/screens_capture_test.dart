@@ -4,59 +4,24 @@
 import 'dart:io';
 import 'dart:ui' as ui;
 
-import 'package:faceoff/engine/robot.dart';
-import 'package:faceoff/engine/table.dart';
-import 'package:faceoff/screens/home_screen.dart';
-import 'package:faceoff/screens/how_to_play_screen.dart';
-import 'package:faceoff/screens/match_screen.dart';
-import 'package:faceoff/screens/settings_screen.dart';
+import 'package:hockey_bro/engine/robot.dart';
+import 'package:hockey_bro/engine/table.dart';
+import 'package:hockey_bro/screens/home_screen.dart';
+import 'package:hockey_bro/screens/how_to_play_screen.dart';
+import 'package:hockey_bro/screens/match_screen.dart';
+import 'package:hockey_bro/screens/settings_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
-import 'package:flutter/services.dart';
 import 'package:flutter_test/flutter_test.dart';
 
+import '../support/fonts.dart';
 import '../support/harness.dart';
 
 const bool _capture = bool.fromEnvironment('CAPTURE');
 
-Future<void> _loadFont(String family, List<String> files) async {
-  final loader = FontLoader(family);
-  for (final file in files) {
-    final bytes = File(file).readAsBytesSync();
-    loader.addFont(Future.value(ByteData.view(bytes.buffer)));
-  }
-  await loader.load();
-}
-
-String? _materialIcons() {
-  var dir = File(Platform.resolvedExecutable).parent;
-  for (var i = 0; i < 8; i++) {
-    final f = File(
-      '${dir.path}/artifacts/material_fonts/MaterialIcons-Regular.otf',
-    );
-    if (f.existsSync()) return f.path;
-    final g = File(
-      '${dir.path}/cache/artifacts/material_fonts/MaterialIcons-Regular.otf',
-    );
-    if (g.existsSync()) return g.path;
-    dir = dir.parent;
-  }
-  return null;
-}
-
 void main() {
   setUpAll(() async {
-    if (!_capture) return;
-    await _loadFont('Baloo2', [
-      'assets/fonts/Baloo2-Bold.ttf',
-      'assets/fonts/Baloo2-ExtraBold.ttf',
-    ]);
-    await _loadFont('Nunito', [
-      'assets/fonts/Nunito-SemiBold.ttf',
-      'assets/fonts/Nunito-Bold.ttf',
-    ]);
-    final icons = _materialIcons();
-    if (icons != null) await _loadFont('MaterialIcons', [icons]);
+    if (_capture) await loadAppFonts();
   });
 
   final shots = <String, (Widget, Duration)>{

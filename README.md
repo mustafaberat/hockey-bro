@@ -1,6 +1,8 @@
-# faceoff
+# HockeyBro
 
-A new Flutter project.
+HockeyBro: 2 Player Air Hockey
+
+One Phone. Two Bros. One Winner.
 
 ## Getting Started
 

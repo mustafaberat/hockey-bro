@@ -1,5 +1,5 @@
-name: faceoff
-description: "Two players, one phone. Tap your ice and push the puck in."
+name: hockey_bro
+description: "HockeyBro: 2 Player Air Hockey. One Phone. Two Bros. One Winner."
 # The following line prevents the package from being accidentally published to
 # pub.dev using `flutter pub publish`. This is preferred for private packages.
 publish_to: 'none' # Remove this line if you wish to publish to pub.dev

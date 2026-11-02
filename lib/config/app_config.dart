@@ -1,12 +1,13 @@
-/// Identity, routes, and ad timing. The working title stays in one place
-/// until a name is chosen.
+/// Identity, routes, and ad timing.
 library;
 
 abstract final class AppIdentity {
-  static const String appName = 'Faceoff';
+  static const String appName = 'HockeyBro';
+  static const String storeName = 'HockeyBro: 2 Player Air Hockey';
+  static const String slogan = 'One Phone. Two Bros. One Winner.';
   static const String developer = 'ARU SOFT';
-  static const String packageId = 'com.arusoft.faceoff';
-  static const String privacyUrl = 'https://arusoft.vercel.app/privacy/faceoff';
+  static const String packageId = 'com.arusoft.hockeybro';
+  static const String privacyUrl = 'https://arusoft.vercel.app/privacy/hockeybro';
 }
 
 abstract final class AppRoutes {

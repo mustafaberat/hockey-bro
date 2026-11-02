@@ -10,7 +10,7 @@ class AppLocalizationsKo extends AppLocalizations {
   AppLocalizationsKo([String locale = 'ko']) : super(locale);
 
   @override
-  String get appTitle => 'Faceoff';
+  String get appTitle => 'HockeyBro';
 
   @override
   String get tagline => '채를 끌어 퍽을 미세요.';
@@ -135,13 +135,13 @@ class AppLocalizationsKo extends AppLocalizations {
   String get adSlot => '광고';
 
   @override
-  String get logoTop => '하키';
+  String get logoTop => 'HOCKEY';
 
   @override
-  String get logoBottom => '대결';
+  String get logoBottom => 'BRO';
 
   @override
-  String get workingTitle => '(가제)';
+  String get slogan => '폰 하나. 형제 둘. 승자 하나.';
 
   @override
   String get onePlayerHint => '봇과 대결';

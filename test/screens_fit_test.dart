@@ -1,11 +1,11 @@
-import 'package:faceoff/engine/robot.dart';
-import 'package:faceoff/engine/table.dart';
-import 'package:faceoff/screens/about_screen.dart';
-import 'package:faceoff/screens/home_screen.dart';
-import 'package:faceoff/screens/how_to_play_screen.dart';
-import 'package:faceoff/screens/match_screen.dart';
-import 'package:faceoff/screens/settings_screen.dart';
-import 'package:faceoff/services/settings_service.dart';
+import 'package:hockey_bro/engine/robot.dart';
+import 'package:hockey_bro/engine/table.dart';
+import 'package:hockey_bro/screens/about_screen.dart';
+import 'package:hockey_bro/screens/home_screen.dart';
+import 'package:hockey_bro/screens/how_to_play_screen.dart';
+import 'package:hockey_bro/screens/match_screen.dart';
+import 'package:hockey_bro/screens/settings_screen.dart';
+import 'package:hockey_bro/services/settings_service.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 
@@ -43,7 +43,7 @@ void main() {
     useScreen(tester);
     await tester.pumpWidget(harness(await testServices(), const HomeScreen()));
     await tester.pump();
-    for (final text in ['HOKEY', 'DÜELLOSU']) {
+    for (final text in ['HOCKEY', 'BRO', 'Bir telefon. İki kardeş. Bir kazanan.']) {
       expect(find.text(text), findsWidgets);
     }
     for (final text in [

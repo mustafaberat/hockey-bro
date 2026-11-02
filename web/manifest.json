@@ -1,11 +1,11 @@
 {
-    "name": "faceoff",
-    "short_name": "faceoff",
+    "name": "HockeyBro: 2 Player Air Hockey",
+    "short_name": "HockeyBro",
     "start_url": ".",
     "display": "standalone",
     "background_color": "#0175C2",
     "theme_color": "#0175C2",
-    "description": "A new Flutter project.",
+    "description": "One Phone. Two Bros. One Winner.",
     "orientation": "portrait-primary",
     "prefer_related_applications": false,
     "icons": [

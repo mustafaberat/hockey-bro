@@ -1,6 +1,6 @@
 {
   "@@locale": "en",
-  "appTitle": "Faceoff",
+  "appTitle": "HockeyBro",
   "tagline": "Drag your mallet. Push the puck in.",
   "play": "Play",
   "howToPlay": "How to play",
@@ -71,8 +71,8 @@
   "start": "Start",
   "adSlot": "Ad",
   "logoTop": "HOCKEY",
-  "logoBottom": "DUEL",
-  "workingTitle": "(working title)",
+  "logoBottom": "BRO",
+  "slogan": "One Phone. Two Bros. One Winner.",
   "onePlayerHint": "Against the bot",
   "twoPlayersHint": "Face to face, one phone",
   "goalShout": "GOAL!",

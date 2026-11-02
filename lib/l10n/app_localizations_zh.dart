@@ -10,7 +10,7 @@ class AppLocalizationsZh extends AppLocalizations {
   AppLocalizationsZh([String locale = 'zh']) : super(locale);
 
   @override
-  String get appTitle => 'Faceoff';
+  String get appTitle => 'HockeyBro';
 
   @override
   String get tagline => '拖动球拍，把球推进去。';
@@ -135,13 +135,13 @@ class AppLocalizationsZh extends AppLocalizations {
   String get adSlot => '广告';
 
   @override
-  String get logoTop => '冰球';
+  String get logoTop => 'HOCKEY';
 
   @override
-  String get logoBottom => '对决';
+  String get logoBottom => 'BRO';
 
   @override
-  String get workingTitle => '（暂定名）';
+  String get slogan => '一部手机。两个兄弟。一个赢家。';
 
   @override
   String get onePlayerHint => '对战机器人';

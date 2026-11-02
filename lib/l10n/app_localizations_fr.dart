@@ -10,7 +10,7 @@ class AppLocalizationsFr extends AppLocalizations {
   AppLocalizationsFr([String locale = 'fr']) : super(locale);
 
   @override
-  String get appTitle => 'Faceoff';
+  String get appTitle => 'HockeyBro';
 
   @override
   String get tagline => 'Glisse ton maillet. Pousse le palet.';
@@ -140,10 +140,10 @@ class AppLocalizationsFr extends AppLocalizations {
   String get logoTop => 'HOCKEY';
 
   @override
-  String get logoBottom => 'DUEL';
+  String get logoBottom => 'BRO';
 
   @override
-  String get workingTitle => '(titre provisoire)';
+  String get slogan => 'Un téléphone. Deux frères. Un gagnant.';
 
   @override
   String get onePlayerHint => 'Contre le bot';

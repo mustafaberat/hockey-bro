@@ -1,4 +1,4 @@
-package com.arusoft.faceoff
+package com.arusoft.hockeybro
 
 import io.flutter.embedding.android.FlutterActivity
 

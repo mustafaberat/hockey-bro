@@ -10,7 +10,7 @@ class AppLocalizationsJa extends AppLocalizations {
   AppLocalizationsJa([String locale = 'ja']) : super(locale);
 
   @override
-  String get appTitle => 'Faceoff';
+  String get appTitle => 'HockeyBro';
 
   @override
   String get tagline => 'マレットをドラッグ。パックを押せ。';
@@ -135,13 +135,13 @@ class AppLocalizationsJa extends AppLocalizations {
   String get adSlot => '広告';
 
   @override
-  String get logoTop => 'ホッケー';
+  String get logoTop => 'HOCKEY';
 
   @override
-  String get logoBottom => 'デュエル';
+  String get logoBottom => 'BRO';
 
   @override
-  String get workingTitle => '（仮タイトル）';
+  String get slogan => 'スマホ1台。兄弟2人。勝者は1人。';
 
   @override
   String get onePlayerHint => 'ボットと対戦';

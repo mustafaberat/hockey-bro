@@ -117,7 +117,7 @@ abstract class AppLocalizations {
   /// No description provided for @appTitle.
   ///
   /// In en, this message translates to:
-  /// **'Faceoff'**
+  /// **'HockeyBro'**
   String get appTitle;
 
   /// No description provided for @tagline.
@@ -357,14 +357,14 @@ abstract class AppLocalizations {
   /// No description provided for @logoBottom.
   ///
   /// In en, this message translates to:
-  /// **'DUEL'**
+  /// **'BRO'**
   String get logoBottom;
 
-  /// No description provided for @workingTitle.
+  /// No description provided for @slogan.
   ///
   /// In en, this message translates to:
-  /// **'(working title)'**
-  String get workingTitle;
+  /// **'One Phone. Two Bros. One Winner.'**
+  String get slogan;
 
   /// No description provided for @onePlayerHint.
   ///

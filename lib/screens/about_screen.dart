@@ -57,6 +57,13 @@ class _AboutScreenState extends State<AboutScreen> {
             child: Column(
               children: [
                 Text(l10n.appTitle, style: theme.display(26)),
+                const SizedBox(height: 4),
+                Text(
+                  l10n.slogan,
+                  textAlign: TextAlign.center,
+                  style: theme.body(14, color: theme.subtle),
+                ),
+                const SizedBox(height: 6),
                 Text(
                   AppIdentity.developer,
                   style: theme.body(14, color: theme.subtle),

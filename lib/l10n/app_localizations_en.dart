@@ -10,7 +10,7 @@ class AppLocalizationsEn extends AppLocalizations {
   AppLocalizationsEn([String locale = 'en']) : super(locale);
 
   @override
-  String get appTitle => 'Faceoff';
+  String get appTitle => 'HockeyBro';
 
   @override
   String get tagline => 'Drag your mallet. Push the puck in.';
@@ -139,10 +139,10 @@ class AppLocalizationsEn extends AppLocalizations {
   String get logoTop => 'HOCKEY';
 
   @override
-  String get logoBottom => 'DUEL';
+  String get logoBottom => 'BRO';
 
   @override
-  String get workingTitle => '(working title)';
+  String get slogan => 'One Phone. Two Bros. One Winner.';
 
   @override
   String get onePlayerHint => 'Against the bot';

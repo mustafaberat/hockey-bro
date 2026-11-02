@@ -12,16 +12,16 @@ import 'services/audio_service.dart';
 import 'services/settings_service.dart';
 import 'theme/game_theme.dart';
 
-class FaceoffApp extends StatefulWidget {
-  const FaceoffApp({required this.services, super.key});
+class HockeyBroApp extends StatefulWidget {
+  const HockeyBroApp({required this.services, super.key});
 
   final AppServices services;
 
   @override
-  State<FaceoffApp> createState() => _FaceoffAppState();
+  State<HockeyBroApp> createState() => _HockeyBroAppState();
 }
 
-class _FaceoffAppState extends State<FaceoffApp> with WidgetsBindingObserver {
+class _HockeyBroAppState extends State<HockeyBroApp> with WidgetsBindingObserver {
   @override
   void initState() {
     super.initState();
@@ -121,7 +121,7 @@ Future<void> bootstrap() async {
   ads.initialize();
 
   runApp(
-    FaceoffApp(
+    HockeyBroApp(
       services: AppServices(settings: settings, audio: audio, ads: ads),
     ),
   );

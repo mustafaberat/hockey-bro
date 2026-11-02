@@ -17,7 +17,10 @@ import 'match_screen.dart';
 import 'settings_screen.dart';
 
 class HomeScreen extends StatefulWidget {
-  const HomeScreen({super.key});
+  const HomeScreen({@visibleForTesting this.storeShot = false, super.key});
+
+  /// Store screenshots hide the ad slot. The slogan stays.
+  final bool storeShot;
 
   @override
   State<HomeScreen> createState() => _HomeScreenState();
@@ -84,7 +87,7 @@ class _HomeScreenState extends State<HomeScreen> {
                       _Logo(
                         top: l10n.logoTop,
                         bottom: l10n.logoBottom,
-                        note: l10n.workingTitle,
+                        note: l10n.slogan,
                       ),
                       const Expanded(flex: 5, child: _Hero()),
                       _ModeButton(
@@ -147,7 +150,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   ),
                 ),
               ),
-              const BannerSlot(),
+              if (!widget.storeShot) const BannerSlot(),
             ],
           ),
         ),
@@ -157,11 +160,11 @@ class _HomeScreenState extends State<HomeScreen> {
 }
 
 class _Logo extends StatelessWidget {
-  const _Logo({required this.top, required this.bottom, required this.note});
+  const _Logo({required this.top, required this.bottom, this.note});
 
   final String top;
   final String bottom;
-  final String note;
+  final String? note;
 
   @override
   Widget build(BuildContext context) {
@@ -177,11 +180,13 @@ class _Logo extends StatelessWidget {
           fit: BoxFit.scaleDown,
           child: OutlinedText(bottom, size: 44, color: theme.blue),
         ),
-        const SizedBox(height: 4),
-        Text(
-          note,
-          style: theme.body(11, color: theme.subtle, weight: FontWeight.w600),
-        ),
+        if (note case final note?) ...[
+          const SizedBox(height: 4),
+          Text(
+            note,
+            style: theme.body(11, color: theme.subtle, weight: FontWeight.w600),
+          ),
+        ],
       ],
     );
   }

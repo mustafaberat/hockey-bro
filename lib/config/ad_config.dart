@@ -1,4 +1,4 @@
-/// Test AdMob ids until the Faceoff app exists under the ARU Soft publisher.
+/// Test AdMob ids until the HockeyBro app exists under the ARU Soft publisher.
 library;
 
 import 'package:flutter/foundation.dart';
