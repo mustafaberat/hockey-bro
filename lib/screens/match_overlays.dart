@@ -308,6 +308,7 @@ class MatchEndOverlay extends StatefulWidget {
     required this.red,
     required this.vsBot,
     required this.onRematch,
+    this.onShown,
     required this.onMenu,
     this.lock = const Duration(milliseconds: 800),
     super.key,
@@ -318,6 +319,9 @@ class MatchEndOverlay extends StatefulWidget {
   final int red;
   final bool vsBot;
   final VoidCallback onRematch;
+
+  /// Called once, after the card's first frame is on screen.
+  final VoidCallback? onShown;
   final VoidCallback onMenu;
   final Duration lock;
 
@@ -341,6 +345,9 @@ class _MatchEndOverlayState extends State<MatchEndOverlay>
   @override
   void initState() {
     super.initState();
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      if (mounted) widget.onShown?.call();
+    });
     _unlock = Timer(widget.lock, () {
       if (mounted) setState(() => _open = true);
     });

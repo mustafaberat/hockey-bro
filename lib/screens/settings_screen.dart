@@ -1,3 +1,6 @@
+import '../analytics/analytics_events.dart';
+import '../analytics/analytics_service.dart';
+
 import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
 
@@ -119,7 +122,12 @@ class _SettingsScreenState extends State<SettingsScreen> {
                 _Row(
                   icon: Icons.help_outline_rounded,
                   label: l10n.howToPlay,
-                  onTap: () => _open(const HowToPlayScreen(), dialog: true),
+                  onTap: () {
+                    AnalyticsService.instance.logHowToPlayOpen(
+                      source: AnalyticsValues.sourceSettings,
+                    );
+                    _open(const HowToPlayScreen(), dialog: true);
+                  },
                 ),
                 divider,
                 _Row(

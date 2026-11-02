@@ -1,6 +1,9 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
+import 'analytics/analytics_service.dart';
 import 'app_scope.dart';
 import 'l10n/app_localizations.dart';
 import 'screens/home_screen.dart';
@@ -121,5 +124,10 @@ Future<void> bootstrap() async {
     FaceoffApp(
       services: AppServices(settings: settings, audio: audio, ads: ads),
     ),
+  );
+  // After runApp and unawaited: Firebase never delays the first frame. No
+  // config / any failure = analytics stays off for this session.
+  unawaited(
+    AnalyticsService.instance.start(settings.prefs).catchError((Object _) {}),
   );
 }

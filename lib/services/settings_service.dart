@@ -1,6 +1,8 @@
 import 'package:flutter/widgets.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
+import '../analytics/analytics_events.dart';
+import '../analytics/analytics_service.dart';
 import '../config/app_config.dart';
 import '../engine/robot.dart';
 
@@ -22,6 +24,11 @@ class SettingsService extends ChangeNotifier {
       SettingsService(await SharedPreferences.getInstance());
 
   final SharedPreferences _prefs;
+
+  SharedPreferences get prefs => _prefs;
+
+  static void _changed(String setting, String value) =>
+      AnalyticsService.instance.logSettingsChange(setting, value);
 
   static const List<String> supportedLanguages = [
     'en',
@@ -64,13 +71,18 @@ class SettingsService extends ChangeNotifier {
 
   Future<void> setDifficulty(Difficulty value) async {
     if (_difficulty == value) return;
+    _changed(AnalyticsValues.settingDifficulty, value.name);
     _difficulty = value;
     notifyListeners();
     await _prefs.setString(PrefsKeys.difficulty, value.name);
   }
 
   Future<void> setLanguage(String? code) async {
-    _language = supportedLanguages.contains(code) ? code : null;
+    final next = supportedLanguages.contains(code) ? code : null;
+    if (next != _language) {
+      _changed(AnalyticsValues.settingLanguage, next ?? 'system');
+    }
+    _language = next;
     if (_language == null) {
       await _prefs.remove(PrefsKeys.language);
     } else {
@@ -80,12 +92,18 @@ class SettingsService extends ChangeNotifier {
   }
 
   Future<void> setMusic(bool value) async {
+    if (value != _music) {
+      _changed(AnalyticsValues.settingMusic, value ? 'on' : 'off');
+    }
     _music = value;
     await _prefs.setBool(PrefsKeys.music, value);
     notifyListeners();
   }
 
   Future<void> setHaptics(bool value) async {
+    if (value != _haptics) {
+      _changed(AnalyticsValues.settingHaptics, value ? 'on' : 'off');
+    }
     _haptics = value;
     await _prefs.setBool(PrefsKeys.haptics, value);
     notifyListeners();

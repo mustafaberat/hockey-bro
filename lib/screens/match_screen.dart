@@ -4,6 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:flutter/services.dart';
 
+import '../analytics/analytics_events.dart';
+import '../analytics/match_analytics.dart';
 import '../app_scope.dart';
 import '../components/comic.dart';
 import '../engine/robot.dart';
@@ -51,6 +53,9 @@ class _MatchScreenState extends State<MatchScreen>
     _table.value.red,
   ));
   late final ValueNotifier<bool> _paused = ValueNotifier(widget.startPaused);
+  late final MatchAnalytics _analytics = MatchAnalytics(
+    difficulty: widget.difficulty,
+  );
   final _repaint = _Repaint();
   final _fx = RinkFx();
   final Map<int, Side> _pointers = {};
@@ -79,6 +84,7 @@ class _MatchScreenState extends State<MatchScreen>
     super.initState();
     if (_state.phase == RinkPhase.goal) _goalId++;
     _ticker = createTicker(_onTick)..start();
+    _analytics.matchStarted(trigger: AnalyticsValues.triggerNew);
     _armBeat();
   }
 
@@ -124,6 +130,7 @@ class _MatchScreenState extends State<MatchScreen>
     _state = next;
     if (next.phase == RinkPhase.goal) {
       _goalId++;
+      _analytics.goal(next);
       _pointers.clear();
       if (AppScope.read(context).settings.haptics) {
         HapticFeedback.mediumImpact();
@@ -217,20 +224,22 @@ class _MatchScreenState extends State<MatchScreen>
     _state = placeMallet(_state, side, point.dx, point.dy, _frameDt);
   }
 
-  void _pause() {
+  void _pause({String source = AnalyticsValues.sourceButton}) {
     if (_state.phase == RinkPhase.over || _paused.value) return;
+    _analytics.paused(_state, source: source);
     _beat?.cancel();
     _pointers.clear();
     _paused.value = true;
   }
 
   void _resume() {
+    _analytics.resumed();
     _paused.value = false;
     _last = Duration.zero;
     _armBeat();
   }
 
-  void _restart() {
+  void _restart({required String trigger}) {
     _pointers.clear();
     _fx.clear();
     _paused.value = false;
@@ -238,11 +247,27 @@ class _MatchScreenState extends State<MatchScreen>
     _touching = false;
     _matchId++;
     _state = const TableState();
+    _analytics.matchStarted(trigger: trigger);
     _armBeat();
+  }
+
+  void _restartFromPause() {
+    _analytics.matchQuit(_state, from: AnalyticsValues.fromRestart);
+    _restart(trigger: AnalyticsValues.triggerRestart);
+  }
+
+  void _rematch() {
+    _analytics.endChoice(AnalyticsValues.choiceRematch);
+    _restart(trigger: AnalyticsValues.triggerRematch);
   }
 
   Future<void> _home({required bool afterMatch}) async {
     final ads = AppScope.read(context).ads;
+    if (afterMatch) {
+      _analytics.endChoice(AnalyticsValues.choiceMenu);
+    } else {
+      _analytics.matchQuit(_state, from: AnalyticsValues.fromMenu);
+    }
     Navigator.of(context).pop();
     if (afterMatch) await ads.maybeShowMatchEndInterstitial();
   }
@@ -256,7 +281,13 @@ class _MatchScreenState extends State<MatchScreen>
       builder: (context, paused, child) => PopScope(
         canPop: paused || _state.phase == RinkPhase.over,
         onPopInvokedWithResult: (didPop, _) {
-          if (!didPop) _pause();
+          if (!didPop) {
+            _pause(source: AnalyticsValues.sourceBack);
+          } else {
+            // Back from the pause card. No-op if the menu button already
+            // reported the quit or the match is over.
+            _analytics.matchQuit(_state, from: AnalyticsValues.fromBack);
+          }
         },
         child: child!,
       ),
@@ -323,7 +354,7 @@ class _MatchScreenState extends State<MatchScreen>
                         return PauseOverlay(
                           vsBot: _vsBot,
                           onResume: _resume,
-                          onRestart: _restart,
+                          onRestart: _restartFromPause,
                           onMenu: () => _home(afterMatch: false),
                         );
                       },
@@ -341,7 +372,8 @@ class _MatchScreenState extends State<MatchScreen>
                           blue: s.blue,
                           red: s.red,
                           vsBot: _vsBot,
-                          onRematch: _restart,
+                          onRematch: _rematch,
+                          onShown: () => _analytics.matchEnded(_state),
                           onMenu: () => _home(afterMatch: true),
                         );
                       },

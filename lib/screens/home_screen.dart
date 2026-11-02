@@ -2,6 +2,8 @@ import 'dart:math' as math;
 
 import 'package:flutter/material.dart';
 
+import '../analytics/analytics_events.dart';
+import '../analytics/analytics_service.dart';
 import '../app_scope.dart';
 import '../components/banner_slot.dart';
 import '../components/comic.dart';
@@ -38,6 +40,11 @@ class _HomeScreenState extends State<HomeScreen> {
   }
 
   void _howTo({bool firstRun = false}) {
+    AnalyticsService.instance.logHowToPlayOpen(
+      source: firstRun
+          ? AnalyticsValues.sourceFirstRun
+          : AnalyticsValues.sourceHome,
+    );
     Navigator.of(context).push(
       MaterialPageRoute<void>(
         fullscreenDialog: true,
@@ -114,11 +121,14 @@ class _HomeScreenState extends State<HomeScreen> {
                               icon: Icons.settings_rounded,
                               height: 40,
                               fontSize: 15,
-                              onPressed: () => Navigator.of(context).push(
-                                MaterialPageRoute<void>(
-                                  builder: (_) => const SettingsScreen(),
-                                ),
-                              ),
+                              onPressed: () {
+                                AnalyticsService.instance.logSettingsOpen();
+                                Navigator.of(context).push(
+                                  MaterialPageRoute<void>(
+                                    builder: (_) => const SettingsScreen(),
+                                  ),
+                                );
+                              },
                             ),
                           ),
                           const SizedBox(width: 10),
