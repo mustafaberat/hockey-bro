@@ -1,0 +1,52 @@
+{
+  "en-US": {
+    "title": "HockeyBro: 2 Player Air Hockey",
+    "shortDescription": "Air hockey for two on one phone. Sit face to face, first to 7 goals wins.",
+    "fullDescription": "One Phone. Two Bros. One Winner.\n\nHockeyBro is air hockey for two players on one phone.\n\nPut the phone between you, drag your mallet and push the puck into the other goal. First to 7 goals wins the match.\n\nHOW TO PLAY\n• Each player drags the mallet on their own half.\n• Hit the puck into your rival's goal to score.\n• First to 7 goals wins. Tap Rematch and go again.\n\nPLAY SOLO\n• No one around? Play against the bot.\n• Three levels: Easy, Normal and Hard.\n\nFEATURES\n• Local 2 player air hockey on one device. No account.\n• Bright comic arcade look, music and haptics.\n• Play offline. Ads only on the home screen and after a match, never during play.\n• 10 languages in Settings.\n\nMade by ARU SOFT.\nDownload HockeyBro and start your next face-off."
+  },
+  "es-419": {
+    "title": "HockeyBro: Hockey para 2",
+    "shortDescription": "Air hockey para dos en un teléfono. Cara a cara, gana quien llegue a 7 goles.",
+    "fullDescription": "Un teléfono. Dos hermanos. Un ganador.\n\nHockeyBro es air hockey para dos jugadores en un solo teléfono.\n\nPongan el teléfono entre ustedes, arrastra tu mazo y empuja el disco al otro arco. Quien marque 7 goles primero gana el partido.\n\nCÓMO JUGAR\n• Cada jugador arrastra su mazo en su propia mitad.\n• Mete el disco en el arco rival para anotar.\n• Gana quien llegue primero a 7 goles. Toca Otra vez y vuelve a jugar.\n\nJUEGA SOLO\n• ¿No hay nadie? Juega contra el bot.\n• Tres niveles: Fácil, Normal y Difícil.\n\nCARACTERÍSTICAS\n• Air hockey local para 2 jugadores en un dispositivo. Sin cuenta.\n• Estilo arcade de cómic colorido, música y vibración.\n• Juega sin conexión. Anuncios solo en la pantalla de inicio y después de un partido, nunca durante el juego.\n• 10 idiomas en Ajustes.\n\nHecho por ARU SOFT.\nDescarga HockeyBro y empieza tu próximo duelo."
+  },
+  "pt-BR": {
+    "title": "HockeyBro: Hóquei 2 Jogadores",
+    "shortDescription": "Hóquei de mesa para dois no celular. Frente a frente, quem fizer 7 gols vence.",
+    "fullDescription": "Um telefone. Dois irmãos. Um vencedor.\n\nHockeyBro é hóquei de mesa para dois jogadores em um só celular.\n\nColoquem o celular entre vocês, arraste o seu taco e empurre o disco no outro gol. Quem fizer 7 gols primeiro vence a partida.\n\nCOMO JOGAR\n• Cada jogador arrasta o taco na sua própria metade.\n• Coloque o disco no gol do rival para marcar.\n• Quem fizer 7 gols primeiro vence. Toque em Jogar de novo e comece outra.\n\nJOGUE SOZINHO\n• Ninguém por perto? Jogue contra o bot.\n• Três níveis: Fácil, Normal e Difícil.\n\nRECURSOS\n• Hóquei de mesa local para 2 jogadores em um aparelho. Sem conta.\n• Visual arcade de quadrinhos colorido, música e vibração.\n• Jogue offline. Anúncios só na tela inicial e depois da partida, nunca durante o jogo.\n• 10 idiomas nas Configurações.\n\nFeito por ARU SOFT.\nBaixe HockeyBro e comece o próximo duelo."
+  },
+  "zh-CN": {
+    "title": "HockeyBro：双人桌上冰球",
+    "shortDescription": "一部手机，两人对战桌上冰球。面对面开打，先进7球者获胜。",
+    "fullDescription": "一部手机。两个兄弟。一个赢家。\n\nHockeyBro是一款在同一部手机上双人对战的桌上冰球游戏。\n\n把手机放在两人中间，拖动球拍，把球推进对方球门。先进7球的一方赢得比赛。\n\n玩法\n• 每位玩家在自己的半场拖动球拍。\n• 把球打进对方球门即可得分。\n• 先进7球者获胜。点击再来一局，马上再战。\n\n单人模式\n• 没有对手？挑战机器人。\n• 三种难度：容易、普通、困难。\n\n特色\n• 一台设备即可本地双人对战。无需账号。\n• 多彩漫画街机风格，配有音乐和振动。\n• 支持离线游玩。广告只出现在主界面和比赛结束后，游戏过程中不会出现。\n• 设置中提供10种语言。\n\n由 ARU SOFT 制作。\n下载HockeyBro，开始你的下一场对决。"
+  },
+  "ja-JP": {
+    "title": "HockeyBro：2人対戦エアホッケー",
+    "shortDescription": "1台のスマホで2人対戦エアホッケー。向かい合って、先に7点取った方の勝ち。",
+    "fullDescription": "スマホ1台。兄弟2人。勝者は1人。\n\nHockeyBroは、1台のスマホで遊べる2人対戦エアホッケーです。\n\nスマホを2人の間に置き、マレットをドラッグしてパックを相手のゴールへ。先に7点取った方が勝ちです。\n\n遊び方\n• それぞれ自分の陣地でマレットをドラッグ。\n• パックを相手のゴールに入れて得点。\n• 先に7点で勝ち。「もう一回」ですぐに再戦。\n\nひとりで遊ぶ\n• 相手がいない？ボットと対戦。\n• 3つのレベル：易しい・普通・難しい。\n\n特長\n• 1台で遊べるローカル2人対戦エアホッケー。アカウント不要。\n• カラフルなコミック風アーケードデザイン、音楽と振動。\n• オフラインで遊べます。広告はホーム画面と試合後のみ、プレイ中は表示されません。\n• 設定で10言語に対応。\n\n制作：ARU SOFT\nHockeyBroをダウンロードして、次の対決を始めよう。"
+  },
+  "de-DE": {
+    "title": "HockeyBro: Airhockey zu zweit",
+    "shortDescription": "Airhockey zu zweit auf einem Handy. Wer zuerst 7 Tore schießt, gewinnt.",
+    "fullDescription": "Ein Handy. Zwei Brüder. Ein Sieger.\n\nHockeyBro ist Airhockey für zwei Spieler auf einem Handy.\n\nLegt das Handy zwischen euch, zieh deinen Schläger und schieb den Puck ins andere Tor. Wer zuerst 7 Tore schießt, gewinnt das Match.\n\nSO WIRD GESPIELT\n• Jeder zieht den Schläger auf seiner eigenen Hälfte.\n• Schieß den Puck ins Tor deines Gegners.\n• Wer zuerst 7 Tore hat, gewinnt. Tippe auf Nochmal und spiel weiter.\n\nALLEIN SPIELEN\n• Niemand da? Spiel gegen den Bot.\n• Drei Stufen: Leicht, Normal und Schwer.\n\nFUNKTIONEN\n• Lokales Airhockey für 2 Spieler auf einem Gerät. Kein Konto.\n• Bunter Comic-Arcade-Look, Musik und Vibration.\n• Offline spielen. Werbung nur auf dem Startbildschirm und nach einem Match, nie während des Spiels.\n• 10 Sprachen in den Einstellungen.\n\nVon ARU SOFT.\nLade HockeyBro und starte dein nächstes Duell."
+  },
+  "fr-FR": {
+    "title": "HockeyBro : Air Hockey à 2",
+    "shortDescription": "Air hockey à deux sur un seul téléphone. Face à face, le premier à 7 buts gagne.",
+    "fullDescription": "Un téléphone. Deux frères. Un gagnant.\n\nHockeyBro, c'est du air hockey pour deux joueurs sur un seul téléphone.\n\nPosez le téléphone entre vous, glisse ton maillet et pousse le palet dans l'autre but. Le premier à 7 buts gagne le match.\n\nCOMMENT JOUER\n• Chaque joueur glisse son maillet dans sa moitié.\n• Envoie le palet dans le but adverse pour marquer.\n• Le premier à 7 buts gagne. Touche Rejouer et c'est reparti.\n\nJOUER SEUL\n• Personne autour ? Joue contre le bot.\n• Trois niveaux : Facile, Normal et Difficile.\n\nFONCTIONNALITÉS\n• Air hockey local à 2 joueurs sur un appareil. Sans compte.\n• Look arcade façon BD, musique et vibrations.\n• Joue hors ligne. Publicités seulement sur l'écran d'accueil et après un match, jamais pendant le jeu.\n• 10 langues dans les Réglages.\n\nCréé par ARU SOFT.\nTélécharge HockeyBro et lance ton prochain duel."
+  },
+  "ko-KR": {
+    "title": "HockeyBro: 2인용 에어하키",
+    "shortDescription": "한 폰으로 즐기는 2인 에어하키. 마주 앉아 먼저 7골을 넣으면 승리!",
+    "fullDescription": "폰 하나. 형제 둘. 승자 하나.\n\nHockeyBro는 한 대의 폰으로 즐기는 2인용 에어하키입니다.\n\n폰을 두 사람 사이에 두고, 채를 끌어 퍽을 상대 골로 밀어 넣으세요. 먼저 7골을 넣는 사람이 이깁니다.\n\n플레이 방법\n• 각자 자기 진영에서 채를 끕니다.\n• 퍽을 상대 골에 넣으면 득점.\n• 먼저 7골을 넣으면 승리. 다시 하기를 눌러 바로 한 판 더.\n\n혼자 플레이\n• 상대가 없나요? 봇과 대결하세요.\n• 세 가지 난이도: 쉬움, 보통, 어려움.\n\n특징\n• 한 기기로 즐기는 로컬 2인 에어하키. 계정 불필요.\n• 화려한 코믹 아케이드 스타일, 음악과 진동.\n• 오프라인 플레이. 광고는 홈 화면과 경기 후에만, 플레이 중에는 없습니다.\n• 설정에서 10개 언어 지원.\n\n제작: ARU SOFT\nHockeyBro를 다운로드하고 다음 대결을 시작하세요."
+  },
+  "it-IT": {
+    "title": "HockeyBro: Air Hockey per 2",
+    "shortDescription": "Air hockey in due su un solo telefono. Faccia a faccia, vince chi segna 7 gol.",
+    "fullDescription": "Un telefono. Due fratelli. Un vincitore.\n\nHockeyBro è air hockey per due giocatori su un solo telefono.\n\nMettete il telefono tra voi, trascina la mazza e spingi il disco nell'altra porta. Chi segna 7 gol per primo vince la partita.\n\nCOME SI GIOCA\n• Ogni giocatore trascina la mazza nella propria metà.\n• Manda il disco nella porta avversaria per segnare.\n• Vince chi arriva per primo a 7 gol. Tocca Rivincita e rigioca.\n\nGIOCA DA SOLO\n• Nessuno intorno? Gioca contro il bot.\n• Tre livelli: Facile, Normale e Difficile.\n\nCARATTERISTICHE\n• Air hockey locale per 2 giocatori su un dispositivo. Nessun account.\n• Stile arcade a fumetti, musica e vibrazione.\n• Gioca offline. Pubblicità solo nella schermata iniziale e dopo una partita, mai durante il gioco.\n• 10 lingue nelle Impostazioni.\n\nCreato da ARU SOFT.\nScarica HockeyBro e inizia il prossimo duello."
+  },
+  "tr-TR": {
+    "title": "HockeyBro: 2 Kişilik Hokey",
+    "shortDescription": "Tek telefonda 2 kişilik hava hokeyi. Karşılıklı oturun, 7 golü ilk atan kazanır.",
+    "fullDescription": "Bir telefon. İki kardeş. Bir kazanan.\n\nHockeyBro, tek telefonda iki kişilik hava hokeyi oyunudur.\n\nTelefonu aranıza koyun, tokmağınızı sürükleyin ve diski öteki kaleye itin. 7 golü ilk atan maçı kazanır.\n\nNASIL OYNANIR\n• Her oyuncu kendi yarısında tokmağını sürükler.\n• Diski rakibin kalesine sokup gol atın.\n• 7 golü ilk atan kazanır. Tekrar oyna'ya dokunun, rövanşı alın.\n\nTEK BAŞINA OYNA\n• Yanında kimse yok mu? Bota karşı oyna.\n• Üç seviye: Kolay, Orta ve Zor.\n\nÖZELLİKLER\n• Tek cihazda yerel 2 kişilik hava hokeyi. Hesap gerekmez.\n• Rengârenk çizgi roman arcade görünümü, müzik ve titreşim.\n• İnternetsiz oyna. Reklamlar yalnızca ana ekranda ve maçtan sonra, oyun sırasında asla.\n• Ayarlar'da 10 dil.\n\nARU SOFT tarafından yapıldı.\nHockeyBro'yu indir, sıradaki düelloyu başlat."
+  }
+}
