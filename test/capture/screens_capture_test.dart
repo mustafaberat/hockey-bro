@@ -152,6 +152,7 @@ void main() {
       await tester.pump(shot.value.$2);
       // Let implicit animations (button unlock fade etc.) finish.
       await tester.pump(const Duration(milliseconds: 250));
+      await tester.pump();
       await tester.runAsync(() async {
         final boundary =
             key.currentContext!.findRenderObject()! as RenderRepaintBoundary;
