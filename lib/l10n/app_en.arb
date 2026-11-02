@@ -1,0 +1,63 @@
+{
+  "@@locale": "en",
+  "appTitle": "Faceoff",
+  "tagline": "Drag your mallet. Push the puck in.",
+  "play": "Play",
+  "howToPlay": "How to play",
+  "settings": "Settings",
+  "howToLine": "Drag your mallet. Push the puck into the other goal.",
+  "skip": "Skip",
+  "close": "Close",
+  "blue": "Blue",
+  "red": "Red",
+  "firstTo": "First to {count}",
+  "@firstTo": {
+    "placeholders": {
+      "count": { "type": "int" }
+    }
+  },
+  "ready": "Ready",
+  "goal": "Goal",
+  "winner": "{name} wins",
+  "@winner": {
+    "placeholders": {
+      "name": { "type": "String" }
+    }
+  },
+  "rematch": "Rematch",
+  "home": "Home",
+  "pause": "Pause",
+  "paused": "Paused",
+  "resume": "Resume",
+  "restart": "Restart",
+  "language": "Language",
+  "music": "Music",
+  "vibration": "Vibration",
+  "privacy": "Privacy",
+  "about": "About",
+  "versionLabel": "Version {version}",
+  "@versionLabel": {
+    "placeholders": {
+      "version": { "type": "String" }
+    }
+  },
+  "deviceLanguage": "Device language",
+  "privacyError": "The privacy page did not open. Try again.",
+  "tapSide": "{name}, {score}. Drag",
+  "@tapSide": {
+    "placeholders": {
+      "name": { "type": "String" },
+      "score": { "type": "int" }
+    }
+  },
+  "youWin": "You win",
+  "robotWins": "Robot wins",
+  "onePlayer": "1 player",
+  "twoPlayers": "2 players",
+  "difficulty": "Difficulty",
+  "easy": "Easy",
+  "normal": "Normal",
+  "hard": "Hard",
+  "start": "Start",
+  "adSlot": "Ad"
+}

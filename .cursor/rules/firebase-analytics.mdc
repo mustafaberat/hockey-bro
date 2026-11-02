@@ -1,0 +1,17 @@
+---
+description: Her ARU Soft oyununda Firebase Analytics ve ürün olayları zorunlu
+alwaysApply: true
+---
+
+# Firebase Analytics
+
+Kaynak: `mobile-apps/lib/MOBILE_APP_RULES.md` §4.1. Yeni oyun onsuz bitmez. Mevcut oyunda katman yoksa, o oyunda çalışırken eklenir.
+
+- Proje adı oyunun adı, kimlik `arusoft-<slug>`. Paket `com.arusoft.<slug>`. Play API projesi `aru-soft-play-api` ayrı kalır.
+- `google-services.json` yalnızca sahip indirince `android/app/` altına konur. Sahte dosya veya uydurma anahtar yazma. Dosya yokken eklenti uygulanmaz; derleme ve açılış bozulmaz, olaylar no-op olur.
+- Ekranlar `FirebaseAnalytics` çağırmaz. Tek API `AnalyticsService`. Init hatası oyunu durdurmaz.
+- Olay adı `snake_case`, en fazla 40 karakter. `firebase_`, `google_`, `ga_` öneki yok.
+- En az: ekran, ana başlatma, tur/maç başlangıcı, bitiş (sonuç + süre), bitmeden çıkış. Dil değişimi varsa o da gider.
+- Tık, kare veya kaydırma başına olay yok. Skor bitiş parametresidir.
+
+Örnek katalog: `clickbattle/docs/ANALYTICS.md`.
