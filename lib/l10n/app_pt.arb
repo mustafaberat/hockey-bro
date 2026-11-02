@@ -38,5 +38,20 @@
   "normal": "Normal",
   "hard": "Difícil",
   "start": "Começar",
-  "adSlot": "Anúncio"
+  "adSlot": "Anúncio",
+  "logoTop": "HÓQUEI",
+  "logoBottom": "DUELO",
+  "workingTitle": "(título provisório)",
+  "onePlayerHint": "Contra o bot",
+  "twoPlayersHint": "Frente a frente, um celular",
+  "goalShout": "GOL!",
+  "scoredBy": "{name} marcou!",
+  "botTag": "BOT · {level}",
+  "youTag": "VOCÊ",
+  "menu": "Menu",
+  "playAgain": "Jogar de novo",
+  "youWinShout": "VOCÊ VENCEU!",
+  "closeOne": "Quase!",
+  "wonRematch": "{name} venceu · Revanche?",
+  "bot": "Bot"
 }

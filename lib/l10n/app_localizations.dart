@@ -303,13 +303,13 @@ abstract class AppLocalizations {
   /// No description provided for @onePlayer.
   ///
   /// In en, this message translates to:
-  /// **'1 player'**
+  /// **'1 Player'**
   String get onePlayer;
 
   /// No description provided for @twoPlayers.
   ///
   /// In en, this message translates to:
-  /// **'2 players'**
+  /// **'2 Players'**
   String get twoPlayers;
 
   /// No description provided for @difficulty.
@@ -347,6 +347,96 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Ad'**
   String get adSlot;
+
+  /// No description provided for @logoTop.
+  ///
+  /// In en, this message translates to:
+  /// **'HOCKEY'**
+  String get logoTop;
+
+  /// No description provided for @logoBottom.
+  ///
+  /// In en, this message translates to:
+  /// **'DUEL'**
+  String get logoBottom;
+
+  /// No description provided for @workingTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'(working title)'**
+  String get workingTitle;
+
+  /// No description provided for @onePlayerHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Against the bot'**
+  String get onePlayerHint;
+
+  /// No description provided for @twoPlayersHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Face to face, one phone'**
+  String get twoPlayersHint;
+
+  /// No description provided for @goalShout.
+  ///
+  /// In en, this message translates to:
+  /// **'GOAL!'**
+  String get goalShout;
+
+  /// No description provided for @scoredBy.
+  ///
+  /// In en, this message translates to:
+  /// **'{name} scores!'**
+  String scoredBy(String name);
+
+  /// No description provided for @botTag.
+  ///
+  /// In en, this message translates to:
+  /// **'BOT · {level}'**
+  String botTag(String level);
+
+  /// No description provided for @youTag.
+  ///
+  /// In en, this message translates to:
+  /// **'YOU'**
+  String get youTag;
+
+  /// No description provided for @menu.
+  ///
+  /// In en, this message translates to:
+  /// **'Menu'**
+  String get menu;
+
+  /// No description provided for @playAgain.
+  ///
+  /// In en, this message translates to:
+  /// **'Play again'**
+  String get playAgain;
+
+  /// No description provided for @youWinShout.
+  ///
+  /// In en, this message translates to:
+  /// **'YOU WIN!'**
+  String get youWinShout;
+
+  /// No description provided for @closeOne.
+  ///
+  /// In en, this message translates to:
+  /// **'So close!'**
+  String get closeOne;
+
+  /// No description provided for @wonRematch.
+  ///
+  /// In en, this message translates to:
+  /// **'{name} won · Rematch?'**
+  String wonRematch(String name);
+
+  /// No description provided for @bot.
+  ///
+  /// In en, this message translates to:
+  /// **'Bot'**
+  String get bot;
 }
 
 class _AppLocalizationsDelegate

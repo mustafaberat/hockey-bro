@@ -44,6 +44,7 @@ dependencies:
     sdk: flutter
 
 dev_dependencies:
+  flutter_launcher_icons: ^0.14.4
   flutter_test:
     sdk: flutter
 
@@ -64,6 +65,20 @@ flutter:
 
   assets:
     - assets/audio/rink.wav
+
+  fonts:
+    - family: Baloo2
+      fonts:
+        - asset: assets/fonts/Baloo2-Bold.ttf
+          weight: 700
+        - asset: assets/fonts/Baloo2-ExtraBold.ttf
+          weight: 800
+    - family: Nunito
+      fonts:
+        - asset: assets/fonts/Nunito-SemiBold.ttf
+          weight: 600
+        - asset: assets/fonts/Nunito-Bold.ttf
+          weight: 700
 
   # To add assets to your application, add an assets section, like this:
   # assets:
@@ -95,3 +110,19 @@ flutter:
   #
   # For details regarding fonts from package dependencies,
   # see https://flutter.dev/to/font-from-package
+
+flutter_launcher_icons:
+  android: true
+  ios: true
+  image_path: assets/icon/app_icon.png
+  min_sdk_android: 21
+  # Adaptive icon: the artwork sits at 62% so both mallets stay inside the
+  # 66dp safe zone; the background is the same art mirror-extended, so no
+  # seam shows under any launcher mask or parallax.
+  adaptive_icon_foreground: assets/icon/app_icon_foreground.png
+  # The PNGs already carry their safe-zone padding.
+  adaptive_icon_foreground_inset: 0
+  adaptive_icon_background: assets/icon/app_icon_background.png
+  adaptive_icon_monochrome: assets/icon/app_icon_monochrome.png
+  remove_alpha_ios: true
+  background_color_ios: "#FFC93C"

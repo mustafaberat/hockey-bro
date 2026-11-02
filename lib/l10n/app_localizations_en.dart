@@ -112,10 +112,10 @@ class AppLocalizationsEn extends AppLocalizations {
   String get robotWins => 'Robot wins';
 
   @override
-  String get onePlayer => '1 player';
+  String get onePlayer => '1 Player';
 
   @override
-  String get twoPlayers => '2 players';
+  String get twoPlayers => '2 Players';
 
   @override
   String get difficulty => 'Difficulty';
@@ -134,4 +134,55 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get adSlot => 'Ad';
+
+  @override
+  String get logoTop => 'HOCKEY';
+
+  @override
+  String get logoBottom => 'DUEL';
+
+  @override
+  String get workingTitle => '(working title)';
+
+  @override
+  String get onePlayerHint => 'Against the bot';
+
+  @override
+  String get twoPlayersHint => 'Face to face, one phone';
+
+  @override
+  String get goalShout => 'GOAL!';
+
+  @override
+  String scoredBy(String name) {
+    return '$name scores!';
+  }
+
+  @override
+  String botTag(String level) {
+    return 'BOT · $level';
+  }
+
+  @override
+  String get youTag => 'YOU';
+
+  @override
+  String get menu => 'Menu';
+
+  @override
+  String get playAgain => 'Play again';
+
+  @override
+  String get youWinShout => 'YOU WIN!';
+
+  @override
+  String get closeOne => 'So close!';
+
+  @override
+  String wonRematch(String name) {
+    return '$name won · Rematch?';
+  }
+
+  @override
+  String get bot => 'Bot';
 }

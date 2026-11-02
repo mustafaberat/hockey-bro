@@ -25,9 +25,9 @@ abstract final class TableGeom {
 }
 
 abstract final class TableRules {
-  static const int goalsToWin = 3;
+  static const int goalsToWin = 7;
   static const Duration faceoff = Duration(milliseconds: 700);
-  static const Duration goalHold = Duration(milliseconds: 900);
+  static const Duration goalHold = Duration(milliseconds: 1500);
 }
 
 class TableState {

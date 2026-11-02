@@ -5,10 +5,12 @@ import 'package:flutter/foundation.dart';
 import 'package:google_mobile_ads/google_mobile_ads.dart';
 
 abstract final class AdConfig {
-  static const String testAppIdAndroid = 'ca-app-pub-3940256099942544~3347511713';
+  static const String testAppIdAndroid =
+      'ca-app-pub-3940256099942544~3347511713';
   static const String testAppIdIos = 'ca-app-pub-3940256099942544~1458002511';
   static const String testBanner = 'ca-app-pub-3940256099942544/6300978111';
-  static const String testInterstitial = 'ca-app-pub-3940256099942544/1033173712';
+  static const String testInterstitial =
+      'ca-app-pub-3940256099942544/1033173712';
 
   static const String _tbd = '<TBD>';
   static const String releaseHomeBanner = 'ca-app-pub-1508520223269936/$_tbd';

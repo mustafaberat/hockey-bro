@@ -38,5 +38,20 @@
   "normal": "普通",
   "hard": "難しい",
   "start": "スタート",
-  "adSlot": "広告"
+  "adSlot": "広告",
+  "logoTop": "ホッケー",
+  "logoBottom": "デュエル",
+  "workingTitle": "（仮タイトル）",
+  "onePlayerHint": "ボットと対戦",
+  "twoPlayersHint": "1台で向かい合って",
+  "goalShout": "ゴール！",
+  "scoredBy": "{name}の得点！",
+  "botTag": "ボット · {level}",
+  "youTag": "あなた",
+  "menu": "メニュー",
+  "playAgain": "もう一回",
+  "youWinShout": "勝ち！",
+  "closeOne": "おしい！",
+  "wonRematch": "{name}の勝ち · リベンジ？",
+  "bot": "ボット"
 }

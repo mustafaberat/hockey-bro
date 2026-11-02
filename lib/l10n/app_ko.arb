@@ -38,5 +38,20 @@
   "normal": "보통",
   "hard": "어려움",
   "start": "시작",
-  "adSlot": "광고"
+  "adSlot": "광고",
+  "logoTop": "하키",
+  "logoBottom": "대결",
+  "workingTitle": "(가제)",
+  "onePlayerHint": "봇과 대결",
+  "twoPlayersHint": "한 폰으로 마주 보고",
+  "goalShout": "골!",
+  "scoredBy": "{name} 득점!",
+  "botTag": "봇 · {level}",
+  "youTag": "나",
+  "menu": "메뉴",
+  "playAgain": "다시 하기",
+  "youWinShout": "승리!",
+  "closeOne": "아깝다!",
+  "wonRematch": "{name} 승리 · 재대결?",
+  "bot": "봇"
 }

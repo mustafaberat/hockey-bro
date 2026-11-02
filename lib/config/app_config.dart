@@ -21,6 +21,8 @@ abstract final class PrefsKeys {
   static const String music = 'music';
   static const String haptics = 'haptics';
   static const String onboardingDone = 'onboarding_done';
+  static const String difficulty = 'difficulty';
+  // TODO(theme): store the chosen theme (Arcade, Neon, Candy) here.
 }
 
 abstract final class AdRules {

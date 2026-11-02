@@ -13,7 +13,9 @@
   "firstTo": "First to {count}",
   "@firstTo": {
     "placeholders": {
-      "count": { "type": "int" }
+      "count": {
+        "type": "int"
+      }
     }
   },
   "ready": "Ready",
@@ -21,7 +23,9 @@
   "winner": "{name} wins",
   "@winner": {
     "placeholders": {
-      "name": { "type": "String" }
+      "name": {
+        "type": "String"
+      }
     }
   },
   "rematch": "Rematch",
@@ -38,7 +42,9 @@
   "versionLabel": "Version {version}",
   "@versionLabel": {
     "placeholders": {
-      "version": { "type": "String" }
+      "version": {
+        "type": "String"
+      }
     }
   },
   "deviceLanguage": "Device language",
@@ -46,18 +52,58 @@
   "tapSide": "{name}, {score}. Drag",
   "@tapSide": {
     "placeholders": {
-      "name": { "type": "String" },
-      "score": { "type": "int" }
+      "name": {
+        "type": "String"
+      },
+      "score": {
+        "type": "int"
+      }
     }
   },
   "youWin": "You win",
   "robotWins": "Robot wins",
-  "onePlayer": "1 player",
-  "twoPlayers": "2 players",
+  "onePlayer": "1 Player",
+  "twoPlayers": "2 Players",
   "difficulty": "Difficulty",
   "easy": "Easy",
   "normal": "Normal",
   "hard": "Hard",
   "start": "Start",
-  "adSlot": "Ad"
+  "adSlot": "Ad",
+  "logoTop": "HOCKEY",
+  "logoBottom": "DUEL",
+  "workingTitle": "(working title)",
+  "onePlayerHint": "Against the bot",
+  "twoPlayersHint": "Face to face, one phone",
+  "goalShout": "GOAL!",
+  "scoredBy": "{name} scores!",
+  "@scoredBy": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "botTag": "BOT · {level}",
+  "@botTag": {
+    "placeholders": {
+      "level": {
+        "type": "String"
+      }
+    }
+  },
+  "youTag": "YOU",
+  "menu": "Menu",
+  "playAgain": "Play again",
+  "youWinShout": "YOU WIN!",
+  "closeOne": "So close!",
+  "wonRematch": "{name} won · Rematch?",
+  "@wonRematch": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "bot": "Bot"
 }

@@ -2,12 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
 import 'app_scope.dart';
-import 'config/tokens.dart';
 import 'l10n/app_localizations.dart';
 import 'screens/home_screen.dart';
 import 'services/ad_service.dart';
 import 'services/audio_service.dart';
 import 'services/settings_service.dart';
+import 'theme/game_theme.dart';
 
 class FaceoffApp extends StatefulWidget {
   const FaceoffApp({required this.services, super.key});
@@ -54,11 +54,15 @@ class _FaceoffAppState extends State<FaceoffApp> with WidgetsBindingObserver {
           supportedLocales: AppLocalizations.supportedLocales,
           localizationsDelegates: AppLocalizations.localizationsDelegates,
           localeResolutionCallback: _resolveLocale,
-          theme: _theme,
+          theme: buildMaterialTheme(GameThemes.arcade),
           builder: (context, child) {
-            return AppScope(
-              services: widget.services,
-              child: child ?? const SizedBox.shrink(),
+            // TODO(theme): pick the theme from settings once Neon and Candy exist.
+            return GameThemeScope(
+              theme: GameThemes.arcade,
+              child: AppScope(
+                services: widget.services,
+                child: child ?? const SizedBox.shrink(),
+              ),
             );
           },
           home: const HomeScreen(),
@@ -77,26 +81,33 @@ class _FaceoffAppState extends State<FaceoffApp> with WidgetsBindingObserver {
   }
 }
 
-final ThemeData _theme = ThemeData(
-  useMaterial3: true,
-  brightness: Brightness.dark,
-  scaffoldBackgroundColor: AppColors.board,
-  colorScheme: const ColorScheme.dark(
-    surface: AppColors.board,
-    primary: AppColors.blue,
-    onPrimary: AppColors.blueInk,
-    onSurface: AppColors.white,
-    secondary: AppColors.red,
-    onSecondary: AppColors.redInk,
-    error: AppColors.red,
-    onError: AppColors.ink,
-  ),
-);
+ThemeData buildMaterialTheme(GameTheme game) {
+  return ThemeData(
+    useMaterial3: true,
+    brightness: Brightness.light,
+    fontFamily: game.bodyFont,
+    scaffoldBackgroundColor: game.background,
+    colorScheme: ColorScheme.light(
+      surface: game.card,
+      onSurface: game.ink,
+      primary: game.primary,
+      onPrimary: Colors.white,
+      secondary: game.blue,
+      onSecondary: Colors.white,
+      error: game.red,
+      onError: Colors.white,
+    ),
+    snackBarTheme: SnackBarThemeData(
+      backgroundColor: game.ink,
+      contentTextStyle: game.body(14, color: Colors.white),
+    ),
+  );
+}
 
 Future<void> bootstrap() async {
   WidgetsFlutterBinding.ensureInitialized();
   await SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);
-  SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle.light);
+  SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle.dark);
 
   final settings = await SettingsService.create();
   final audio = AudioService();

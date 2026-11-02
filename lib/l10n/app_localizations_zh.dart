@@ -133,4 +133,55 @@ class AppLocalizationsZh extends AppLocalizations {
 
   @override
   String get adSlot => '广告';
+
+  @override
+  String get logoTop => '冰球';
+
+  @override
+  String get logoBottom => '对决';
+
+  @override
+  String get workingTitle => '（暂定名）';
+
+  @override
+  String get onePlayerHint => '对战机器人';
+
+  @override
+  String get twoPlayersHint => '同一部手机，面对面';
+
+  @override
+  String get goalShout => '进球！';
+
+  @override
+  String scoredBy(String name) {
+    return '$name得分！';
+  }
+
+  @override
+  String botTag(String level) {
+    return '机器人 · $level';
+  }
+
+  @override
+  String get youTag => '你';
+
+  @override
+  String get menu => '菜单';
+
+  @override
+  String get playAgain => '再来一局';
+
+  @override
+  String get youWinShout => '你赢了！';
+
+  @override
+  String get closeOne => '差一点！';
+
+  @override
+  String wonRematch(String name) {
+    return '$name获胜 · 再战？';
+  }
+
+  @override
+  String get bot => '机器人';
 }

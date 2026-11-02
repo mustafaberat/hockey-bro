@@ -134,4 +134,55 @@ class AppLocalizationsIt extends AppLocalizations {
 
   @override
   String get adSlot => 'Annuncio';
+
+  @override
+  String get logoTop => 'HOCKEY';
+
+  @override
+  String get logoBottom => 'DUELLO';
+
+  @override
+  String get workingTitle => '(titolo provvisorio)';
+
+  @override
+  String get onePlayerHint => 'Contro il bot';
+
+  @override
+  String get twoPlayersHint => 'Faccia a faccia, un telefono';
+
+  @override
+  String get goalShout => 'GOL!';
+
+  @override
+  String scoredBy(String name) {
+    return 'Segna $name!';
+  }
+
+  @override
+  String botTag(String level) {
+    return 'BOT · $level';
+  }
+
+  @override
+  String get youTag => 'TU';
+
+  @override
+  String get menu => 'Menu';
+
+  @override
+  String get playAgain => 'Rigioca';
+
+  @override
+  String get youWinShout => 'HAI VINTO!';
+
+  @override
+  String get closeOne => 'Quasi!';
+
+  @override
+  String wonRematch(String name) {
+    return 'Vince $name · Rivincita?';
+  }
+
+  @override
+  String get bot => 'Bot';
 }

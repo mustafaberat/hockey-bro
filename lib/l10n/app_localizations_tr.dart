@@ -65,13 +65,13 @@ class AppLocalizationsTr extends AppLocalizations {
   String get pause => 'Durdur';
 
   @override
-  String get paused => 'Durdu';
+  String get paused => 'Duraklatıldı';
 
   @override
-  String get resume => 'Devam';
+  String get resume => 'Devam et';
 
   @override
-  String get restart => 'Baştan';
+  String get restart => 'Yeniden';
 
   @override
   String get language => 'Dil';
@@ -111,10 +111,10 @@ class AppLocalizationsTr extends AppLocalizations {
   String get robotWins => 'Robot kazandı';
 
   @override
-  String get onePlayer => '1 oyuncu';
+  String get onePlayer => '1 Oyuncu';
 
   @override
-  String get twoPlayers => '2 oyuncu';
+  String get twoPlayers => '2 Oyuncu';
 
   @override
   String get difficulty => 'Zorluk';
@@ -123,7 +123,7 @@ class AppLocalizationsTr extends AppLocalizations {
   String get easy => 'Kolay';
 
   @override
-  String get normal => 'Normal';
+  String get normal => 'Orta';
 
   @override
   String get hard => 'Zor';
@@ -133,4 +133,55 @@ class AppLocalizationsTr extends AppLocalizations {
 
   @override
   String get adSlot => 'Reklam';
+
+  @override
+  String get logoTop => 'HOKEY';
+
+  @override
+  String get logoBottom => 'DÜELLOSU';
+
+  @override
+  String get workingTitle => '(geçici isim)';
+
+  @override
+  String get onePlayerHint => 'Bota karşı';
+
+  @override
+  String get twoPlayersHint => 'Aynı telefonda, karşılıklı';
+
+  @override
+  String get goalShout => 'GOL!';
+
+  @override
+  String scoredBy(String name) {
+    return '$name attı!';
+  }
+
+  @override
+  String botTag(String level) {
+    return 'BOT · $level';
+  }
+
+  @override
+  String get youTag => 'SEN';
+
+  @override
+  String get menu => 'Menü';
+
+  @override
+  String get playAgain => 'Tekrar oyna';
+
+  @override
+  String get youWinShout => 'KAZANDIN!';
+
+  @override
+  String get closeOne => 'Az kaldı!';
+
+  @override
+  String wonRematch(String name) {
+    return '$name kazandı · Rövanş?';
+  }
+
+  @override
+  String get bot => 'Bot';
 }

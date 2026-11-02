@@ -38,5 +38,20 @@
   "normal": "Normal",
   "hard": "Schwer",
   "start": "Start",
-  "adSlot": "Anzeige"
+  "adSlot": "Anzeige",
+  "logoTop": "HOCKEY",
+  "logoBottom": "DUELL",
+  "workingTitle": "(Arbeitstitel)",
+  "onePlayerHint": "Gegen den Bot",
+  "twoPlayersHint": "Gegenüber, ein Handy",
+  "goalShout": "TOR!",
+  "scoredBy": "{name} trifft!",
+  "botTag": "BOT · {level}",
+  "youTag": "DU",
+  "menu": "Menü",
+  "playAgain": "Nochmal",
+  "youWinShout": "GEWONNEN!",
+  "closeOne": "Knapp!",
+  "wonRematch": "{name} gewinnt · Revanche?",
+  "bot": "Bot"
 }

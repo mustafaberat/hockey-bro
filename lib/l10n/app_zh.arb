@@ -38,5 +38,20 @@
   "normal": "普通",
   "hard": "困难",
   "start": "开始",
-  "adSlot": "广告"
+  "adSlot": "广告",
+  "logoTop": "冰球",
+  "logoBottom": "对决",
+  "workingTitle": "（暂定名）",
+  "onePlayerHint": "对战机器人",
+  "twoPlayersHint": "同一部手机，面对面",
+  "goalShout": "进球！",
+  "scoredBy": "{name}得分！",
+  "botTag": "机器人 · {level}",
+  "youTag": "你",
+  "menu": "菜单",
+  "playAgain": "再来一局",
+  "youWinShout": "你赢了！",
+  "closeOne": "差一点！",
+  "wonRematch": "{name}获胜 · 再战？",
+  "bot": "机器人"
 }

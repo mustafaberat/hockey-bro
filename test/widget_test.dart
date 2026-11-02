@@ -18,7 +18,12 @@ void main() {
   });
 
   test('the side wall sends the puck back', () {
-    var state = const TableState(phase: RinkPhase.live, puckX: 0.3, puckY: 0.85, puckVx: -2);
+    var state = const TableState(
+      phase: RinkPhase.live,
+      puckX: 0.3,
+      puckY: 0.85,
+      puckVx: -2,
+    );
     for (var i = 0; i < 40 && state.puckVx < 0; i++) {
       state = stepTable(state, 1 / 60);
     }
@@ -28,7 +33,12 @@ void main() {
   });
 
   test('the top wall outside the goal bounces', () {
-    var state = const TableState(phase: RinkPhase.live, puckX: 0.12, puckY: 0.25, puckVy: -2);
+    var state = const TableState(
+      phase: RinkPhase.live,
+      puckX: 0.12,
+      puckY: 0.25,
+      puckVy: -2,
+    );
     for (var i = 0; i < 20; i++) {
       state = stepTable(state, 1 / 60);
     }
@@ -37,7 +47,12 @@ void main() {
   });
 
   test('the top goal scores for red', () {
-    var state = const TableState(phase: RinkPhase.live, puckX: 0.5, puckY: 0.2, puckVy: -2);
+    var state = const TableState(
+      phase: RinkPhase.live,
+      puckX: 0.5,
+      puckY: 0.2,
+      puckVy: -2,
+    );
     for (var i = 0; i < 40 && state.phase == RinkPhase.live; i++) {
       state = stepTable(state, 1 / 60);
     }
@@ -63,9 +78,10 @@ void main() {
     expect(state.puckY, lessThan(TableGeom.centerY));
   });
 
-  test('three goals end the match', () {
+  test('seven goals end the match', () {
+    expect(TableRules.goalsToWin, 7);
     final state = finishGoalBeat(
-      const TableState(blue: 3, phase: RinkPhase.goal, lastScore: Side.blue),
+      const TableState(blue: 7, phase: RinkPhase.goal, lastScore: Side.blue),
     );
     expect(state.phase, RinkPhase.over);
     expect(winnerOf(state), Side.blue);
@@ -117,14 +133,18 @@ void main() {
     await audio.init(enabled: false);
     await tester.pumpWidget(
       FaceoffApp(
-        services: AppServices(settings: settings, audio: audio, ads: AdService.instance),
+        services: AppServices(
+          settings: settings,
+          audio: audio,
+          ads: AdService.instance,
+        ),
       ),
     );
     await tester.pump();
-    expect(find.text('1 player'), findsOneWidget);
-    expect(find.text('2 players'), findsOneWidget);
+    expect(find.text('1 Player'), findsOneWidget);
+    expect(find.text('2 Players'), findsOneWidget);
     expect(find.text('Settings'), findsOneWidget);
-    expect(find.text('About'), findsOneWidget);
+    expect(find.text('How to play'), findsOneWidget);
     expect(find.text('Ad'), findsOneWidget);
     expect(find.text('Skip'), findsNothing);
   });

@@ -133,4 +133,55 @@ class AppLocalizationsJa extends AppLocalizations {
 
   @override
   String get adSlot => '広告';
+
+  @override
+  String get logoTop => 'ホッケー';
+
+  @override
+  String get logoBottom => 'デュエル';
+
+  @override
+  String get workingTitle => '（仮タイトル）';
+
+  @override
+  String get onePlayerHint => 'ボットと対戦';
+
+  @override
+  String get twoPlayersHint => '1台で向かい合って';
+
+  @override
+  String get goalShout => 'ゴール！';
+
+  @override
+  String scoredBy(String name) {
+    return '$nameの得点！';
+  }
+
+  @override
+  String botTag(String level) {
+    return 'ボット · $level';
+  }
+
+  @override
+  String get youTag => 'あなた';
+
+  @override
+  String get menu => 'メニュー';
+
+  @override
+  String get playAgain => 'もう一回';
+
+  @override
+  String get youWinShout => '勝ち！';
+
+  @override
+  String get closeOne => 'おしい！';
+
+  @override
+  String wonRematch(String name) {
+    return '$nameの勝ち · リベンジ？';
+  }
+
+  @override
+  String get bot => 'ボット';
 }

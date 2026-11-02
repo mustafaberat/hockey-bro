@@ -5,11 +5,8 @@ import 'services/audio_service.dart';
 import 'services/settings_service.dart';
 
 class AppServices {
-  AppServices({
-    required this.settings,
-    required this.audio,
-    AdService? ads,
-  }) : ads = ads ?? AdService.instance;
+  AppServices({required this.settings, required this.audio, AdService? ads})
+    : ads = ads ?? AdService.instance;
 
   final SettingsService settings;
   final AudioService audio;

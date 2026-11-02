@@ -133,4 +133,55 @@ class AppLocalizationsKo extends AppLocalizations {
 
   @override
   String get adSlot => '광고';
+
+  @override
+  String get logoTop => '하키';
+
+  @override
+  String get logoBottom => '대결';
+
+  @override
+  String get workingTitle => '(가제)';
+
+  @override
+  String get onePlayerHint => '봇과 대결';
+
+  @override
+  String get twoPlayersHint => '한 폰으로 마주 보고';
+
+  @override
+  String get goalShout => '골!';
+
+  @override
+  String scoredBy(String name) {
+    return '$name 득점!';
+  }
+
+  @override
+  String botTag(String level) {
+    return '봇 · $level';
+  }
+
+  @override
+  String get youTag => '나';
+
+  @override
+  String get menu => '메뉴';
+
+  @override
+  String get playAgain => '다시 하기';
+
+  @override
+  String get youWinShout => '승리!';
+
+  @override
+  String get closeOne => '아깝다!';
+
+  @override
+  String wonRematch(String name) {
+    return '$name 승리 · 재대결?';
+  }
+
+  @override
+  String get bot => '봇';
 }

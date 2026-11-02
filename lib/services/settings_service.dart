@@ -2,6 +2,7 @@ import 'package:flutter/widgets.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import '../config/app_config.dart';
+import '../engine/robot.dart';
 
 class SettingsService extends ChangeNotifier {
   SettingsService(this._prefs) {
@@ -10,6 +11,11 @@ class SettingsService extends ChangeNotifier {
     _music = _prefs.getBool(PrefsKeys.music) ?? true;
     _haptics = _prefs.getBool(PrefsKeys.haptics) ?? true;
     _onboardingDone = _prefs.getBool(PrefsKeys.onboardingDone) ?? false;
+    final level = _prefs.getString(PrefsKeys.difficulty);
+    _difficulty = Difficulty.values.firstWhere(
+      (d) => d.name == level,
+      orElse: () => Difficulty.normal,
+    );
   }
 
   static Future<SettingsService> create() async =>
@@ -47,12 +53,21 @@ class SettingsService extends ChangeNotifier {
   bool _music = true;
   bool _haptics = true;
   bool _onboardingDone = false;
+  Difficulty _difficulty = Difficulty.normal;
 
   String? get language => _language;
   Locale? get locale => _language == null ? null : Locale(_language!);
   bool get music => _music;
   bool get haptics => _haptics;
   bool get onboardingDone => _onboardingDone;
+  Difficulty get difficulty => _difficulty;
+
+  Future<void> setDifficulty(Difficulty value) async {
+    if (_difficulty == value) return;
+    _difficulty = value;
+    notifyListeners();
+    await _prefs.setString(PrefsKeys.difficulty, value.name);
+  }
 
   Future<void> setLanguage(String? code) async {
     _language = supportedLanguages.contains(code) ? code : null;

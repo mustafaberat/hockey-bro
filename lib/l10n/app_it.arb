@@ -38,5 +38,20 @@
   "normal": "Normale",
   "hard": "Difficile",
   "start": "Inizia",
-  "adSlot": "Annuncio"
+  "adSlot": "Annuncio",
+  "logoTop": "HOCKEY",
+  "logoBottom": "DUELLO",
+  "workingTitle": "(titolo provvisorio)",
+  "onePlayerHint": "Contro il bot",
+  "twoPlayersHint": "Faccia a faccia, un telefono",
+  "goalShout": "GOL!",
+  "scoredBy": "Segna {name}!",
+  "botTag": "BOT · {level}",
+  "youTag": "TU",
+  "menu": "Menu",
+  "playAgain": "Rigioca",
+  "youWinShout": "HAI VINTO!",
+  "closeOne": "Quasi!",
+  "wonRematch": "Vince {name} · Rivincita?",
+  "bot": "Bot"
 }
