@@ -45,6 +45,7 @@
   "onePlayerHint": "Contra o bot",
   "twoPlayersHint": "Frente a frente, um celular",
   "goalShout": "GOL!",
+  "bringPuck": "Traz o disco",
   "scoredBy": "{name} marcou!",
   "botTag": "BOT · {level}",
   "youTag": "VOCÊ",

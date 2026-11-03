@@ -155,6 +155,9 @@ class AppLocalizationsFr extends AppLocalizations {
   String get goalShout => 'BUT !';
 
   @override
+  String get bringPuck => 'Ramène le palet';
+
+  @override
   String scoredBy(String name) {
     return '$name marque !';
   }

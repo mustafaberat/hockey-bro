@@ -45,6 +45,7 @@
   "onePlayerHint": "Contre le bot",
   "twoPlayersHint": "Face à face, un téléphone",
   "goalShout": "BUT !",
+  "bringPuck": "Ramène le palet",
   "scoredBy": "{name} marque !",
   "botTag": "BOT · {level}",
   "youTag": "TOI",

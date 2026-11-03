@@ -153,6 +153,9 @@ class AppLocalizationsJa extends AppLocalizations {
   String get goalShout => 'ゴール！';
 
   @override
+  String get bringPuck => 'パックを戻す';
+
+  @override
   String scoredBy(String name) {
     return '$nameの得点！';
   }

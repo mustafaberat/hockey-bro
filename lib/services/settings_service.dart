@@ -10,7 +10,7 @@ class SettingsService extends ChangeNotifier {
   SettingsService(this._prefs) {
     final lang = _prefs.getString(PrefsKeys.language);
     _language = supportedLanguages.contains(lang) ? lang : null;
-    _music = _prefs.getBool(PrefsKeys.music) ?? true;
+    _music = _prefs.getBool(PrefsKeys.music) ?? false;
     _haptics = _prefs.getBool(PrefsKeys.haptics) ?? true;
     _onboardingDone = _prefs.getBool(PrefsKeys.onboardingDone) ?? false;
     final level = _prefs.getString(PrefsKeys.difficulty);
@@ -57,7 +57,7 @@ class SettingsService extends ChangeNotifier {
   };
 
   String? _language;
-  bool _music = true;
+  bool _music = false;
   bool _haptics = true;
   bool _onboardingDone = false;
   Difficulty _difficulty = Difficulty.normal;

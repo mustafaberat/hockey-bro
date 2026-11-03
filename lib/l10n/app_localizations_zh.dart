@@ -153,6 +153,9 @@ class AppLocalizationsZh extends AppLocalizations {
   String get goalShout => '进球！';
 
   @override
+  String get bringPuck => '把球拿来';
+
+  @override
   String scoredBy(String name) {
     return '$name得分！';
   }

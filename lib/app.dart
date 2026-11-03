@@ -115,7 +115,7 @@ Future<void> bootstrap() async {
   final settings = await SettingsService.create();
   final audio = AudioService();
   await audio.init(enabled: settings.music);
-  await audio.play();
+  if (settings.music) await audio.play();
 
   final ads = AdService.instance;
   ads.initialize();

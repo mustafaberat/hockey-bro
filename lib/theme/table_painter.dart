@@ -241,18 +241,20 @@ class PiecesPainter extends CustomPainter {
     required this.table,
     required this.theme,
     this.fx,
+    this.showPuck = true,
     super.repaint,
   });
 
   final ValueListenable<TableState> table;
   final GameTheme theme;
   final RinkFx? fx;
+  final bool showPuck;
 
   @override
   void paint(Canvas canvas, Size size) {
     final fit = TableFit(size);
     if (fit.scale <= 0) return;
-    paintPieces(canvas, fit, table.value, theme);
+    paintPieces(canvas, fit, table.value, theme, showPuck: showPuck);
     final effects = fx;
     if (effects != null && effects.active) _paintFx(canvas, fit, effects);
   }
@@ -294,15 +296,17 @@ class PiecesPainter extends CustomPainter {
   bool shouldRepaint(PiecesPainter oldDelegate) =>
       oldDelegate.table != table ||
       oldDelegate.theme != theme ||
-      oldDelegate.fx != fx;
+      oldDelegate.fx != fx ||
+      oldDelegate.showPuck != showPuck;
 }
 
 void paintPieces(
   Canvas canvas,
   TableFit fit,
   TableState state,
-  GameTheme theme,
-) {
+  GameTheme theme, {
+  bool showPuck = true,
+}) {
   paintMallet(
     canvas,
     fit.of(state.blueX, state.blueY),
@@ -317,6 +321,7 @@ void paintPieces(
     Side.red,
     theme,
   );
+  if (!showPuck) return;
   final puck = fit.of(state.puckX, state.puckY);
   final r = fit.scale * TableGeom.puckR;
   final speed = math.sqrt(

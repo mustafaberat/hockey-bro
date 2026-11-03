@@ -45,6 +45,7 @@
   "onePlayerHint": "Gegen den Bot",
   "twoPlayersHint": "Gegenüber, ein Handy",
   "goalShout": "TOR!",
+  "bringPuck": "Hol den Puck",
   "scoredBy": "{name} trifft!",
   "botTag": "BOT · {level}",
   "youTag": "DU",

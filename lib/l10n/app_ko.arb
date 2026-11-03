@@ -45,6 +45,7 @@
   "onePlayerHint": "봇과 대결",
   "twoPlayersHint": "한 폰으로 마주 보고",
   "goalShout": "골!",
+  "bringPuck": "퍽 가져오기",
   "scoredBy": "{name} 득점!",
   "botTag": "봇 · {level}",
   "youTag": "나",

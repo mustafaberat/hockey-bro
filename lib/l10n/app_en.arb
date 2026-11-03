@@ -76,6 +76,7 @@
   "onePlayerHint": "Against the bot",
   "twoPlayersHint": "Face to face, one phone",
   "goalShout": "GOAL!",
+  "bringPuck": "Bring the puck",
   "scoredBy": "{name} scores!",
   "@scoredBy": {
     "placeholders": {

@@ -45,6 +45,7 @@
   "onePlayerHint": "ボットと対戦",
   "twoPlayersHint": "1台で向かい合って",
   "goalShout": "ゴール！",
+  "bringPuck": "パックを戻す",
   "scoredBy": "{name}の得点！",
   "botTag": "ボット · {level}",
   "youTag": "あなた",

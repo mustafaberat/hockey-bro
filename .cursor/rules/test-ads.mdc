@@ -1,0 +1,12 @@
+---
+description: Hockey Bro keeps Google test ads until a real AdMob unit exists.
+alwaysApply: true
+---
+
+# Test ads
+
+Google sample ads are already wired. Keep them. Do not remove the ad slot and do not replace the test ids until the user asks.
+
+- Android app id: `ca-app-pub-3940256099942544~3347511713`
+- Banner: `ca-app-pub-3940256099942544/6300978111`
+- Interstitial: `ca-app-pub-3940256099942544/1033173712`

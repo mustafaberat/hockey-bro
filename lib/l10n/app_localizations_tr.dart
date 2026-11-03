@@ -153,6 +153,9 @@ class AppLocalizationsTr extends AppLocalizations {
   String get goalShout => 'GOL!';
 
   @override
+  String get bringPuck => 'Topu getir';
+
+  @override
   String scoredBy(String name) {
     return '$name attı!';
   }

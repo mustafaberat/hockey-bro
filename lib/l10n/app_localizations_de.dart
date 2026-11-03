@@ -155,6 +155,9 @@ class AppLocalizationsDe extends AppLocalizations {
   String get goalShout => 'TOR!';
 
   @override
+  String get bringPuck => 'Hol den Puck';
+
+  @override
   String scoredBy(String name) {
     return '$name trifft!';
   }

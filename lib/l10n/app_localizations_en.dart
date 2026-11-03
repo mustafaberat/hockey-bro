@@ -154,6 +154,9 @@ class AppLocalizationsEn extends AppLocalizations {
   String get goalShout => 'GOAL!';
 
   @override
+  String get bringPuck => 'Bring the puck';
+
+  @override
   String scoredBy(String name) {
     return '$name scores!';
   }

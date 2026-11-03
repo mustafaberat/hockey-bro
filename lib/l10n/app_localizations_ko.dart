@@ -153,6 +153,9 @@ class AppLocalizationsKo extends AppLocalizations {
   String get goalShout => '골!';
 
   @override
+  String get bringPuck => '퍽 가져오기';
+
+  @override
   String scoredBy(String name) {
     return '$name 득점!';
   }

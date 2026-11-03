@@ -103,9 +103,14 @@ void main() {
       );
       await tester.pump(const Duration(milliseconds: 300));
       expect(find.text('GOL!'), findsNWidgets(difficulty == null ? 4 : 2));
+      expect(find.bySemanticsLabel('Topu getir'), findsOneWidget);
       await tester.pump(TableRules.goalHold);
-      await tester.pump(const Duration(milliseconds: 50));
+      expect(find.text('GOL!'), findsNWidgets(difficulty == null ? 4 : 2));
+      await tester.tap(find.bySemanticsLabel('Topu getir'));
+      await tester.pump();
       expect(find.text('GOL!'), findsNothing);
+      await tester.pump(TableRules.puckDrop);
+      await tester.pump(const Duration(milliseconds: 50));
       expect(find.text('4'), findsOneWidget);
       expect(tester.takeException(), isNull);
       await unmount(tester);

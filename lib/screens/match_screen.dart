@@ -37,6 +37,11 @@ class _Repaint extends ChangeNotifier {
   void ping() => notifyListeners();
 }
 
+/// 0 at the top of the fall, 1 when the puck has landed.
+class _DropProgress {
+  double t = 0;
+}
+
 class _MatchScreenState extends State<MatchScreen>
     with SingleTickerProviderStateMixin {
   // Per-frame data lives in notifiers. Only the painters listen to [_table];
@@ -59,6 +64,7 @@ class _MatchScreenState extends State<MatchScreen>
   final _repaint = _Repaint();
   final _fx = RinkFx();
   final Map<int, Side> _pointers = {};
+  final Map<Side, Offset> _aims = {};
   Timer? _beat;
   late final Ticker _ticker;
   Duration _last = Duration.zero;
@@ -68,6 +74,11 @@ class _MatchScreenState extends State<MatchScreen>
   var _goalId = 0;
   var _matchId = 0;
   Size _boardSize = Size.zero;
+  late final Robot? _robot = widget.difficulty == null
+      ? null
+      : Robot(widget.difficulty!);
+  var _dropping = false;
+  final _drop = _DropProgress();
 
   bool get _vsBot => widget.difficulty != null;
   TableState get _state => _table.value;
@@ -110,17 +121,24 @@ class _MatchScreenState extends State<MatchScreen>
     if (!mounted) return;
     final hadFx = _fx.active;
     _fx.prune();
+    if (_dropping) {
+      if (_aims.isNotEmpty || _pointers.isNotEmpty) _releaseMallets();
+      if (!_paused.value && _frameDt > 0) _stepDrop();
+      return;
+    }
+    _chaseMallets();
     if (_paused.value || _frameDt <= 0 || _state.phase != RinkPhase.live) {
       if (hadFx) _repaint.ping();
       return;
     }
-    final robot = widget.difficulty;
+    final robot = _robot;
     var frame = _state;
     if (robot != null) {
-      final aim = robotAim(frame, robot, _frameDt);
+      final aim = robot.aim(frame, _frameDt);
       frame = placeMallet(frame, Side.blue, aim.$1, aim.$2, _frameDt);
     }
     final next = stepTable(frame, _frameDt);
+    if (next.phase != RinkPhase.live) robot?.reset();
     final hit = next.struck && !_touching;
     _touching = next.struck;
     if (hit) {
@@ -131,7 +149,7 @@ class _MatchScreenState extends State<MatchScreen>
     if (next.phase == RinkPhase.goal) {
       _goalId++;
       _analytics.goal(next);
-      _pointers.clear();
+      _releaseMallets();
       if (AppScope.read(context).settings.haptics) {
         HapticFeedback.mediumImpact();
       }
@@ -142,12 +160,12 @@ class _MatchScreenState extends State<MatchScreen>
   void _armBeat() {
     _beat?.cancel();
     if (_paused.value) return;
-    if (_state.phase == RinkPhase.faceoff) {
+    if (_state.phase == RinkPhase.faceoff && !_dropping) {
       _beat = Timer(TableRules.faceoff, () {
-        if (!mounted || _paused.value) return;
+        if (!mounted || _paused.value || _dropping) return;
         _state = dropPuck(_state);
       });
-    } else if (_state.phase == RinkPhase.goal) {
+    } else if (_state.phase == RinkPhase.goal && winnerOf(_state) != null) {
       _beat = Timer(TableRules.goalHold, () {
         if (!mounted || _paused.value) return;
         _state = finishGoalBeat(_state);
@@ -159,11 +177,40 @@ class _MatchScreenState extends State<MatchScreen>
     }
   }
 
+  void _bringPuck() {
+    if (_state.phase != RinkPhase.goal || winnerOf(_state) != null) return;
+    _beat?.cancel();
+    _releaseMallets();
+    _robot?.reset();
+    _drop.t = 0;
+    final held = _state;
+    setState(() => _dropping = true);
+    _state = finishGoalBeat(held).copyWith(
+      blueX: held.blueX,
+      blueY: held.blueY,
+      redX: held.redX,
+      redY: held.redY,
+      blueVx: 0,
+      blueVy: 0,
+      redVx: 0,
+      redVy: 0,
+    );
+  }
+
+  void _stepDrop() {
+    final total = TableRules.puckDrop.inMilliseconds / 1000;
+    _drop.t = (_drop.t + _frameDt / total).clamp(0.0, 1.0);
+    _repaint.ping();
+    if (_drop.t < 1) return;
+    setState(() => _dropping = false);
+    _state = dropPuck(_state);
+  }
+
   void _afterPhase() {
     if (_state.phase == RinkPhase.over && !_reported) {
       _reported = true;
       _touching = false;
-      _pointers.clear();
+      _releaseMallets();
       AppScope.read(context).ads.onMatchFinished();
     }
   }
@@ -180,6 +227,7 @@ class _MatchScreenState extends State<MatchScreen>
 
   bool get _blocked =>
       _paused.value ||
+      _dropping ||
       _state.phase == RinkPhase.goal ||
       _state.phase == RinkPhase.over;
 
@@ -191,7 +239,7 @@ class _MatchScreenState extends State<MatchScreen>
     if (_vsBot && side == Side.blue) return;
     if (_pointers.containsValue(side)) return;
     _pointers[event.pointer] = side;
-    _drag(side, point);
+    _aims[side] = point;
     final mallet = side == Side.blue
         ? (_state.blueX, _state.blueY)
         : (_state.redX, _state.redY);
@@ -209,26 +257,37 @@ class _MatchScreenState extends State<MatchScreen>
     if (side == null || _blocked) return;
     final point = _tablePoint(event.localPosition);
     if (point == null) return;
-    _drag(side, point);
+    _aims[side] = point;
   }
 
   void _up(PointerEvent event) {
-    final side = _pointers.remove(event.pointer);
-    if (side == null) return;
-    _state = side == Side.blue
-        ? _state.copyWith(blueVx: 0, blueVy: 0)
-        : _state.copyWith(redVx: 0, redVy: 0);
+    _pointers.remove(event.pointer);
   }
 
-  void _drag(Side side, Offset point) {
-    _state = placeMallet(_state, side, point.dx, point.dy, _frameDt);
+  /// Keeps each mallet sliding toward the last finger point, including after
+  /// the finger lifts, so a tap travels instead of jumping. A far reach runs
+  /// at full speed and hits harder than a short drag.
+  void _chaseMallets() {
+    if (_dropping || _paused.value || _frameDt <= 0 || _aims.isEmpty) return;
+    final phase = _state.phase;
+    if (phase != RinkPhase.live && phase != RinkPhase.faceoff) return;
+    var frame = _state;
+    for (final aim in _aims.entries) {
+      frame = placeMallet(frame, aim.key, aim.value.dx, aim.value.dy, _frameDt);
+    }
+    _state = frame;
+  }
+
+  void _releaseMallets() {
+    _pointers.clear();
+    _aims.clear();
   }
 
   void _pause({String source = AnalyticsValues.sourceButton}) {
     if (_state.phase == RinkPhase.over || _paused.value) return;
     _analytics.paused(_state, source: source);
     _beat?.cancel();
-    _pointers.clear();
+    _releaseMallets();
     _paused.value = true;
   }
 
@@ -240,7 +299,7 @@ class _MatchScreenState extends State<MatchScreen>
   }
 
   void _restart({required String trigger}) {
-    _pointers.clear();
+    _releaseMallets();
     _fx.clear();
     _paused.value = false;
     _reported = false;
@@ -309,26 +368,40 @@ class _MatchScreenState extends State<MatchScreen>
                         willChange: false,
                       ),
                     ),
-                    Listener(
-                      behavior: HitTestBehavior.opaque,
-                      onPointerDown: _down,
-                      onPointerMove: _move,
-                      onPointerUp: _up,
-                      onPointerCancel: _up,
-                      child: Semantics(
-                        label: l10n.howToLine,
-                        child: RepaintBoundary(
-                          child: CustomPaint(
-                            painter: PiecesPainter(
-                              table: _table,
-                              theme: theme,
-                              fx: _fx,
-                              repaint: Listenable.merge([_table, _repaint]),
+                    AbsorbPointer(
+                      absorbing: _blocked,
+                      child: Listener(
+                        behavior: HitTestBehavior.opaque,
+                        onPointerDown: _down,
+                        onPointerMove: _move,
+                        onPointerUp: _up,
+                        onPointerCancel: _up,
+                        child: Semantics(
+                          label: l10n.howToLine,
+                          child: RepaintBoundary(
+                            child: CustomPaint(
+                              painter: PiecesPainter(
+                                table: _table,
+                                theme: theme,
+                                fx: _fx,
+                                showPuck: !_dropping,
+                                repaint: Listenable.merge([_table, _repaint]),
+                              ),
                             ),
                           ),
                         ),
                       ),
                     ),
+                    if (_dropping)
+                      IgnorePointer(
+                        child: CustomPaint(
+                          painter: FallingPuckPainter(
+                            t: () => _drop.t,
+                            theme: theme,
+                            repaint: _repaint,
+                          ),
+                        ),
+                      ),
                     ..._hud(context, fit, l10n),
                     ValueListenableBuilder<RinkPhase>(
                       valueListenable: _phase,
@@ -337,13 +410,15 @@ class _MatchScreenState extends State<MatchScreen>
                           return const SizedBox.shrink();
                         }
                         final s = _state;
+                        final won = winnerOf(s) != null;
                         return GoalOverlay(
                           key: ValueKey('goal-$_matchId-$_goalId'),
                           scorer: s.lastScore ?? Side.red,
                           blue: s.blue,
                           red: s.red,
                           vsBot: _vsBot,
-                          duration: TableRules.goalHold,
+                          bringLabel: l10n.bringPuck,
+                          onBringPuck: won ? null : _bringPuck,
                         );
                       },
                     ),

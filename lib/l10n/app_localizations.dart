@@ -384,6 +384,12 @@ abstract class AppLocalizations {
   /// **'GOAL!'**
   String get goalShout;
 
+  /// No description provided for @bringPuck.
+  ///
+  /// In en, this message translates to:
+  /// **'Bring the puck'**
+  String get bringPuck;
+
   /// No description provided for @scoredBy.
   ///
   /// In en, this message translates to:

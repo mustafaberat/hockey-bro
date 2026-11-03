@@ -4,6 +4,10 @@ HockeyBro: 2 Player Air Hockey
 
 One Phone. Two Bros. One Winner.
 
+Package: `com.arusoft.hockeybro`  
+Firebase project id: `arusoft-hockeybro`  
+Console: https://console.firebase.google.com/project/arusoft-hockeybro/overview
+
 ## Getting Started
 
 This project is a starting point for a Flutter application.

@@ -3,6 +3,7 @@
 library;
 
 import 'dart:async';
+import 'dart:math' as math;
 
 import 'package:flutter/material.dart';
 
@@ -11,6 +12,7 @@ import '../components/confetti.dart';
 import '../engine/table.dart';
 import '../l10n/app_localizations.dart';
 import '../theme/game_theme.dart';
+import '../theme/table_painter.dart';
 
 /// Two stacked halves. The [top] half is turned 180° so the top player
 /// reads it the right way up.
@@ -54,15 +56,16 @@ String sideName(AppLocalizations l10n, Side side, {required bool vsBot}) {
   return side == Side.blue ? l10n.blue : l10n.red;
 }
 
-/// "GOL!" burst with confetti. Plays once per instance; give each goal its
-/// own key so every goal gets a fresh animation.
+/// "GOL!" burst with confetti. Stays until [onBringPuck] is tapped.
+/// A winning goal passes a null callback and the match screen moves on.
 class GoalOverlay extends StatefulWidget {
   const GoalOverlay({
     required this.scorer,
     required this.blue,
     required this.red,
     required this.vsBot,
-    required this.duration,
+    required this.bringLabel,
+    required this.onBringPuck,
     super.key,
   });
 
@@ -70,7 +73,8 @@ class GoalOverlay extends StatefulWidget {
   final int blue;
   final int red;
   final bool vsBot;
-  final Duration duration;
+  final String bringLabel;
+  final VoidCallback? onBringPuck;
 
   @override
   State<GoalOverlay> createState() => _GoalOverlayState();
@@ -80,21 +84,21 @@ class _GoalOverlayState extends State<GoalOverlay>
     with SingleTickerProviderStateMixin {
   late final AnimationController _c = AnimationController(
     vsync: this,
-    duration: widget.duration,
+    duration: const Duration(milliseconds: 500),
   )..forward();
   late final CurvedAnimation _pop = CurvedAnimation(
     parent: _c,
-    curve: const Interval(0, 0.4, curve: Curves.elasticOut),
+    curve: Curves.elasticOut,
   );
-  late final CurvedAnimation _fade = CurvedAnimation(
+  late final CurvedAnimation _spot = CurvedAnimation(
     parent: _c,
-    curve: const Interval(0.85, 1, curve: Curves.easeIn),
+    curve: Curves.easeOutBack,
   );
 
   @override
   void dispose() {
+    _spot.dispose();
     _pop.dispose();
-    _fade.dispose();
     _c.dispose();
     super.dispose();
   }
@@ -107,7 +111,7 @@ class _GoalOverlayState extends State<GoalOverlay>
     return LayoutBuilder(
       builder: (context, box) {
         final w = box.maxWidth.clamp(200.0, 340.0);
-        final h = (w * 0.5).clamp(0.0, box.maxHeight - 40);
+        final h = (w * 0.42).clamp(0.0, box.maxHeight - 40);
         return ScaleTransition(
           scale: _pop,
           child: Column(
@@ -190,32 +194,177 @@ class _GoalOverlayState extends State<GoalOverlay>
   @override
   Widget build(BuildContext context) {
     final theme = GameThemeScope.of(context);
-    return IgnorePointer(
-      child: RepaintBoundary(
-        child: FadeTransition(
-          opacity: ReverseAnimation(_fade),
-          child: Stack(
-            fit: StackFit.expand,
-            children: [
-              ColoredBox(color: theme.dim.withValues(alpha: 0.18)),
-              CustomPaint(
-                painter: ConfettiPainter(
-                  progress: _c,
-                  colors: theme.confetti,
-                  ink: theme.ink,
-                  seed: widget.blue * 31 + widget.red,
+    return RepaintBoundary(
+      child: Stack(
+        fit: StackFit.expand,
+        children: [
+          ColoredBox(color: theme.dim.withValues(alpha: 0.18)),
+          IgnorePointer(
+            child: CustomPaint(
+              painter: ConfettiPainter(
+                progress: _c,
+                colors: theme.confetti,
+                ink: theme.ink,
+                seed: widget.blue * 31 + widget.red,
+              ),
+            ),
+          ),
+          MirroredHalves(
+            top: widget.vsBot ? null : _banner(context, Side.blue),
+            bottom: _banner(context, Side.red),
+          ),
+          if (widget.onBringPuck != null)
+            Center(
+              child: _BringPuckButton(
+                label: widget.bringLabel,
+                scale: _spot,
+                onPressed: widget.onBringPuck!,
+              ),
+            ),
+        ],
+      ),
+    );
+  }
+}
+
+/// Round button between the two goal shouts. A dashed ring spins and blinks
+/// so either player can see that the puck is the thing to tap.
+class _BringPuckButton extends StatefulWidget {
+  const _BringPuckButton({
+    required this.label,
+    required this.scale,
+    required this.onPressed,
+  });
+
+  final String label;
+  final Animation<double> scale;
+  final VoidCallback onPressed;
+
+  @override
+  State<_BringPuckButton> createState() => _BringPuckButtonState();
+}
+
+class _BringPuckButtonState extends State<_BringPuckButton>
+    with SingleTickerProviderStateMixin {
+  late final AnimationController _spin = AnimationController(
+    vsync: this,
+    duration: const Duration(milliseconds: 900),
+  )..repeat();
+
+  @override
+  void dispose() {
+    _spin.dispose();
+    super.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    final theme = GameThemeScope.of(context);
+    const size = 92.0;
+    final shadow = theme.shadow;
+    return ScaleTransition(
+      scale: widget.scale,
+      child: Semantics(
+        button: true,
+        label: widget.label,
+        child: GestureDetector(
+          onTap: widget.onPressed,
+          behavior: HitTestBehavior.opaque,
+          child: SizedBox(
+            width: size,
+            height: size + shadow,
+            child: Padding(
+              padding: EdgeInsets.only(bottom: shadow),
+              child: DecoratedBox(
+                decoration: BoxDecoration(
+                  color: theme.card,
+                  shape: BoxShape.circle,
+                  border: Border.all(color: theme.ink, width: theme.outline),
+                  boxShadow: [
+                    BoxShadow(color: theme.ink, offset: Offset(0, shadow)),
+                  ],
+                ),
+                child: CustomPaint(
+                  painter: _PuckIconPainter(theme, _spin),
                 ),
               ),
-              MirroredHalves(
-                top: widget.vsBot ? null : _banner(context, Side.blue),
-                bottom: _banner(context, Side.red),
-              ),
-            ],
+            ),
           ),
         ),
       ),
     );
   }
+}
+
+class _PuckIconPainter extends CustomPainter {
+  _PuckIconPainter(this.theme, this.spin) : super(repaint: spin);
+
+  final GameTheme theme;
+  final Animation<double> spin;
+
+  @override
+  void paint(Canvas canvas, Size size) {
+    final c = size.center(Offset.zero);
+    final t = spin.value;
+    final blink = t < 0.55 ? 1.0 : 0.28;
+    final ring = Paint()
+      ..style = PaintingStyle.stroke
+      ..strokeWidth = 3.5
+      ..strokeCap = StrokeCap.round
+      ..color = theme.ink.withValues(alpha: blink);
+    final radius = size.shortestSide * 0.4;
+    final rect = Rect.fromCircle(center: c, radius: radius);
+    const dashes = 10;
+    const sweep = math.pi * 2 / dashes * 0.55;
+    final turn = t * math.pi * 2;
+    for (var i = 0; i < dashes; i++) {
+      canvas.drawArc(rect, turn + i * math.pi * 2 / dashes, sweep, false, ring);
+    }
+    paintPuck(canvas, c, size.shortestSide * 0.24, theme);
+  }
+
+  @override
+  bool shouldRepaint(_PuckIconPainter oldDelegate) => oldDelegate.theme != theme;
+}
+
+/// Puck falling onto the center spot: large and high, then small as it lands.
+/// The shadow stays on the ice and darkens as the puck arrives.
+class FallingPuckPainter extends CustomPainter {
+  FallingPuckPainter({
+    required this.t,
+    required this.theme,
+    required Listenable repaint,
+  }) : super(repaint: repaint);
+
+  final double Function() t;
+  final GameTheme theme;
+
+  @override
+  void paint(Canvas canvas, Size size) {
+    final fit = TableFit(size);
+    if (fit.scale <= 0) return;
+    final fall = Curves.easeIn.transform(t().clamp(0.0, 1.0));
+    final land = fit.of(TableGeom.centerX, TableGeom.centerY);
+    final start = fit.of(TableGeom.centerX, TableGeom.rail + TableGeom.puckR);
+    final puck = Offset.lerp(start, land, fall)!;
+    final puckR = fit.scale * TableGeom.puckR;
+    final radius = puckR * (2.7 - 1.7 * fall);
+    final shadowW = puckR * (0.45 + fall);
+    final shadowH = shadowW * 0.38;
+    canvas.drawOval(
+      Rect.fromCenter(
+        center: land + Offset(0, puckR * 0.55),
+        width: shadowW * 2,
+        height: shadowH * 2,
+      ),
+      Paint()..color = theme.ink.withValues(alpha: 0.12 + 0.5 * fall),
+    );
+    paintPuck(canvas, puck, radius, theme);
+  }
+
+  @override
+  bool shouldRepaint(FallingPuckPainter oldDelegate) =>
+      oldDelegate.theme != theme;
 }
 
 class PauseOverlay extends StatelessWidget {

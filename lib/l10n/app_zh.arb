@@ -45,6 +45,7 @@
   "onePlayerHint": "对战机器人",
   "twoPlayersHint": "同一部手机，面对面",
   "goalShout": "进球！",
+  "bringPuck": "把球拿来",
   "scoredBy": "{name}得分！",
   "botTag": "机器人 · {level}",
   "youTag": "你",

@@ -45,6 +45,7 @@
   "onePlayerHint": "Bota karşı",
   "twoPlayersHint": "Aynı telefonda, karşılıklı",
   "goalShout": "GOL!",
+  "bringPuck": "Topu getir",
   "scoredBy": "{name} attı!",
   "botTag": "BOT · {level}",
   "youTag": "SEN",

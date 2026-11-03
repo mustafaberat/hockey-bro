@@ -1,4 +1,5 @@
-/// Air-hockey table. Positions are in table units: width 1, height 1.7.
+/// Air-hockey table. Positions are in table units: width 1, height 1.92,
+/// close to a phone so the rink fills the screen.
 library;
 
 import 'dart:math' as math;
@@ -9,25 +10,28 @@ enum RinkPhase { faceoff, live, goal, over }
 
 abstract final class TableGeom {
   static const double width = 1;
-  static const double height = 1.7;
+  static const double height = 1.92;
   static const double centerX = 0.5;
-  static const double centerY = 0.85;
-  static const double rail = 0.07;
+  static const double centerY = height / 2;
+  static const double rail = 0.018;
   static const double malletR = 0.078;
   static const double puckR = 0.04;
   static const double goalHalf = 0.15;
-  static const double blueHomeY = 0.36;
-  static const double redHomeY = 1.34;
+  static const double blueHomeY = 0.407;
+  static const double redHomeY = height - blueHomeY;
   static const double restitution = 0.92;
   static const double friction = 0.22;
   static const double maxSpeed = 3.2;
+  /// Slowest the puck moves once it is in play. A light hit keeps gliding.
+  static const double minSpeed = 0.42;
   static const double maxMalletSpeed = 6;
 }
 
 abstract final class TableRules {
   static const int goalsToWin = 7;
   static const Duration faceoff = Duration(milliseconds: 700);
-  static const Duration goalHold = Duration(milliseconds: 1500);
+  static const Duration goalHold = Duration(milliseconds: 800);
+  static const Duration puckDrop = Duration(milliseconds: 720);
 }
 
 class TableState {
@@ -162,22 +166,35 @@ TableState finishGoalBeat(TableState state) {
   return (cx, y.clamp(minY, maxY).toDouble());
 }
 
+/// Slides the mallet toward [x], [y]. A short move keeps its speed; a long
+/// reach is capped, so a rush hits harder than a slow drag.
 TableState placeMallet(TableState state, Side side, double x, double y, double dt) {
   if (state.phase == RinkPhase.goal || state.phase == RinkPhase.over) return state;
-  final next = clampMallet(side, x, y);
+  final currentX = side == Side.blue ? state.blueX : state.redX;
+  final currentY = side == Side.blue ? state.blueY : state.redY;
+  final aim = clampMallet(side, x, y);
   final safeDt = dt <= 0 ? 1 / 60 : dt;
-  var vx = (next.$1 - (side == Side.blue ? state.blueX : state.redX)) / safeDt;
-  var vy = (next.$2 - (side == Side.blue ? state.blueY : state.redY)) / safeDt;
-  final speed = math.sqrt(vx * vx + vy * vy);
-  if (speed > TableGeom.maxMalletSpeed) {
-    final scale = TableGeom.maxMalletSpeed / speed;
-    vx *= scale;
-    vy *= scale;
-  }
+  final dx = aim.$1 - currentX;
+  final dy = aim.$2 - currentY;
+  final dist = math.sqrt(dx * dx + dy * dy);
+  final maxStep = TableGeom.maxMalletSpeed * safeDt;
+  final scale = dist == 0 || dist <= maxStep ? 1.0 : maxStep / dist;
+  final moved = clampMallet(
+    side,
+    currentX + dx * scale,
+    currentY + dy * scale,
+  );
+  final vx = (moved.$1 - currentX) / safeDt;
+  final vy = (moved.$2 - currentY) / safeDt;
   if (side == Side.blue) {
-    return state.copyWith(blueX: next.$1, blueY: next.$2, blueVx: vx, blueVy: vy);
+    return state.copyWith(
+      blueX: moved.$1,
+      blueY: moved.$2,
+      blueVx: vx,
+      blueVy: vy,
+    );
   }
-  return state.copyWith(redX: next.$1, redY: next.$2, redVx: vx, redVy: vy);
+  return state.copyWith(redX: moved.$1, redY: moved.$2, redVx: vx, redVy: vy);
 }
 
 TableState stepTable(TableState state, double dt) {
@@ -273,9 +290,10 @@ TableState _slice(TableState state, double dt) {
     final scale = TableGeom.maxSpeed / speed;
     vx *= scale;
     vy *= scale;
-  } else if (speed < 0.012) {
-    vx = 0;
-    vy = 0;
+  } else if (speed > 1e-6 && speed < TableGeom.minSpeed) {
+    final scale = TableGeom.minSpeed / speed;
+    vx *= scale;
+    vy *= scale;
   }
 
   return state.copyWith(
