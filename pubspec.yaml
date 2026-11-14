@@ -64,6 +64,7 @@ flutter:
 
   assets:
     - assets/audio/rink.wav
+    - assets/images/hero_mascot.png
 
   fonts:
     - family: Baloo2

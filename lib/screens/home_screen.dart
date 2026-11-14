@@ -1,5 +1,3 @@
-import 'dart:math' as math;
-
 import 'package:flutter/material.dart';
 
 import '../analytics/analytics_events.dart';
@@ -8,10 +6,8 @@ import '../app_scope.dart';
 import '../components/banner_slot.dart';
 import '../components/comic.dart';
 import '../engine/robot.dart';
-import '../engine/table.dart';
 import '../l10n/app_localizations.dart';
 import '../theme/game_theme.dart';
-import '../theme/table_painter.dart';
 import 'how_to_play_screen.dart';
 import 'match_screen.dart';
 import 'settings_screen.dart';
@@ -192,41 +188,21 @@ class _Logo extends StatelessWidget {
   }
 }
 
-/// Two mallets and the puck, drawn with the rink painters.
+/// Celebrating paddle pair mascot from the mockup.
 class _Hero extends StatelessWidget {
   const _Hero();
 
   @override
   Widget build(BuildContext context) {
-    final theme = GameThemeScope.of(context);
     return ExcludeSemantics(
-      child: RepaintBoundary(
-        child: CustomPaint(
-          painter: _HeroPainter(theme),
-          child: const SizedBox.expand(),
+      child: Center(
+        child: Image.asset(
+          'assets/images/hero_mascot.png',
+          fit: BoxFit.contain,
         ),
       ),
     );
   }
-}
-
-class _HeroPainter extends CustomPainter {
-  const _HeroPainter(this.theme);
-
-  final GameTheme theme;
-
-  @override
-  void paint(Canvas canvas, Size size) {
-    final r = math.min(size.height * 0.3, size.width * 0.11);
-    if (r < 8) return;
-    final c = size.center(Offset.zero);
-    paintMallet(canvas, c + Offset(-r * 2.3, -r * 0.15), r, Side.blue, theme);
-    paintPuck(canvas, c + Offset(0, -r * 0.35), r * 0.62, theme);
-    paintMallet(canvas, c + Offset(r * 2.3, r * 0.2), r, Side.red, theme);
-  }
-
-  @override
-  bool shouldRepaint(_HeroPainter oldDelegate) => oldDelegate.theme != theme;
 }
 
 class _ModeButton extends StatefulWidget {
